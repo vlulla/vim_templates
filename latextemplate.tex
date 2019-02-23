@@ -1,0 +1,89 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage[english]{babel} %% needed by biblatex-apa!
+
+\usepackage{graphicx}
+%% \usepackage[utf8]{inputenc}
+%% \usepackage{fontspec} %% and use exetex to compile pdf
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%% \usepackage[draft,allpages,grayness=0.9]{draftmark}
+
+%% \usepackage{fancyhdr}
+%% \pagestyle{fancy}
+%% \fancypagestyle{plain}
+%% \fancyhf{} %% clear header and footers
+%% \fancyfoot[C]{\bfseries \thepage} %% This is the default
+%% \renewcommand{\headrulewidth}{0pt}
+%% \renewcommand{\footrulewidth}{0pt}
+
+%% \usepackage[backend=biber, style=apa, sorting=ynt]{biblatex}
+%% \usepackage[backend=biber, style=apa, sorting=ynt, apabackref=true]{biblatex}
+%% \usepackage{csquotes] %% needed by biblatex-apa
+%% \DeclareLanguageMapping{english}{english-apa}
+%% \addbibresource{bibfile.bib} %% .bib extension is needed!
+
+\usepackage{array}
+\usepackage{verbatim}
+
+%% \usepackage{listings}
+
+%% \usepackage[T1]{fontenc} %% use fontspec instead!
+%% \usepackage{fourierenc}
+%% \usepackage{tgschola}
+
+%% \usepackage{booktabs}
+%% \usepackage[normalem]{ulem} % for underlining
+%% \usepackage{setspace}
+%% \usepackage{paralist}
+
+%% \usepackage{tikz}
+%% \usepackage[font=small, labelfont=bf, labelsep=endash]{caption}
+
+\usepackage{hyperref} %% should be the last package!
+\hypersetup{ %
+    raiselinks = false
+  , breaklinks = true
+  , backref = true
+  , colorlinks = true
+  , linkcolor = blue
+  , citecolor = green
+  %% , hidelinks = true
+  , pdfinfo = {
+      Title = {}
+      , Subject = {}
+  }
+}
+
+\title{Title goes here}
+\author{Vijay~Lulla\\
+  Department of Geography\\
+  IUPUI}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Abstract goes here
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+
+\section{Background}
+\label{sec:background}
+
+\section{Data and methods}
+\label{sec:data-and-methods}
+
+\section{Results}
+\label{sec:results}
+
+%% \printbibliography % for biblatex!!
+\end{document}
