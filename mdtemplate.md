@@ -4,20 +4,13 @@ auhtor: "[Vijay Lulla](http://vijaylulla.com)"
 date: "Date here"
 output:
   html_document:
-    toc: true
-    toc_depth: 3
     number_sections: true
     fig_caption: true
     code_folding: hide
   pdf_document:
-    toc: true
-    toc_depth: 3
     keep_tex: false
     number_sections: true
-    latex_engine: xelatex
   word_document:
-    toc: true
-    toc_depth: 3
     fig_caption: true
 fontsize: 11pt
 geometry: margin=1in
