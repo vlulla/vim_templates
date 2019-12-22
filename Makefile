@@ -1,15 +1,25 @@
+## The next few lines from https://tech.davis-hansson.com/p/make/  "Your Makefiles are wrong"
+##
+## So that we can use brace expansion which is unavailable in sh! Sheesh!
+SHELL := bash
+.SHELLFLAGS := -eu -o pipefail -c
+
+
 .PHONY: all clean message
 .DEFAULT_GOAL: all
 
 R_OPTS = --no-restore --no-init-file --no-site-file
 PANDOC_OPTS=--standalone --toc --toc-depth=2 --filter pandoc-citeproc
 PANDOC_PDF_OPTS = -t latex
-PANDOC_DOCX_OPTS = --to docx
-PANDOC_HTML_OPTS = --to html5 --self-contained --number-sectiosn
+PANDOC_DOCX_OPTS = --to docx --listings
+PANDOC_HTML_OPTS = --to html5 --self-contained --number-sections --listings
 LILYPOND=lilypond
 
 all:
 	@echo "Modify the Makefile to fit your target"
+
+%.tex: %.md
+	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown -o $@ $<
 
 %.pdf: %.tex
 	latexmk -silent -rules -xelatex $<
@@ -21,8 +31,6 @@ all:
 ## %.pdf: %.md
 ## 	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown  -o $@ $<
 
-%.tex: %.md
-	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown -o $@ $<
 
 %.docx: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
@@ -36,11 +44,11 @@ all:
 
 %.html: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
-%.html: %.tex
-	pandoc $(PANDOC_OPTS) --ascii -t html5 -o $@ $<
 %.html: %.md
-	pandoc ${PANDOC_OPTS} -f markdown -t html5 -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown -o $@ $<
+%.html: %.tex
+	pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} -f latex -o $@ $<
 
 clean:
 	@echo "Do cleaning here"
-	rm -rf *.Rout .RData
+	rm -rf *.{Rout,RData}

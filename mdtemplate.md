@@ -72,6 +72,7 @@ multiple lines.
 To be able to use this the extensions `+multiline_tables` and `+table_captions`
 will have to be used with the output format.  This is definitely needed for **html**.
 
+----
 
 Here are some miscellaneous notes:
 
@@ -88,6 +89,25 @@ To show a code block indent by **four spaces**.  Let's see if it works
     randstr()
 
 Let's see if this actually works!
+
+Or you can use backticks with specific language to control code listing/coloring.
+Below is some python code.
+
+```python
+def average(*nums):
+    n = [n for n in nums if isinstance(n, (int,float))]
+    return sum(n)/len(n)
+```
+
+And the above R code can be expressed as code listing/highlighting:
+
+```r
+randstr <- function(length=10) {
+  paste0(sample(c(letters, LETTERS), length, replace=TRUE), collapse="")
+}
+set.seed(1234L)
+randstr()
+```
 
 
 To include  a list just create a correctly aligned bullet-list like so:
