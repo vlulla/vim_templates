@@ -1,8 +1,10 @@
 ## The next few lines from https://tech.davis-hansson.com/p/make/  "Your Makefiles are wrong"
 ##
 ## So that we can use brace expansion which is unavailable in sh! Sheesh!
-SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
+.DELETE_ON_ERROR
+.ONESHELL
+SHELL := bash
 
 
 .PHONY: all clean message
