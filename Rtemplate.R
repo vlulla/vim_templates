@@ -9,7 +9,7 @@ Sys.time() ## Tremendous help in .Rout files!
 library(stringi)
 library(RSQLite)
 library(data.table)
-library(fastmatch); match <- fastmatch # faster match!
+library(fastmatch); match <- fastmatch::fmatch # faster match!
 
 library(rgdal)
 library(sp)

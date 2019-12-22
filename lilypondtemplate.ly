@@ -11,7 +11,7 @@
     \Score
       \override BarNumber.break-visibility = ##(#f #t #t)
       \override MultiMeasureRest.expand-limit = #1
-      %% \override SpacingSpanner.base-shortest-duration = #(ly-make-moment 1/20)
+      %% \override SpacingSpanner.base-shortest-duration = #(ly:make-moment 1/20)
   }
 }
 
