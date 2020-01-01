@@ -33,6 +33,8 @@ showLastLength = R1*8 %% last few measures %% Comment to typeset whole score!
 	  %% \set Score.markFormatter = #format-mark-circle-numbers
 	  \time 4/4 \clef treble
 	  c4 d4 e4 f4 %% TODO: start here!
+
+          \bar "|."
 	}
       }
     }
