@@ -2,8 +2,8 @@
 ##
 ## So that we can use brace expansion which is unavailable in sh! Sheesh!
 .SHELLFLAGS := -eu -o pipefail -c
-.DELETE_ON_ERROR
-.ONESHELL
+.DELETE_ON_ERROR:
+.ONESHELL:
 SHELL := bash
 
 
