@@ -12,7 +12,7 @@ SHELL := bash
 
 R_OPTS = --no-restore --no-init-file --no-site-file
 PANDOC_OPTS=--standalone --toc --toc-depth=2 --filter pandoc-citeproc
-PANDOC_PDF_OPTS = -t latex
+PANDOC_PDF_OPTS = --to latex
 PANDOC_DOCX_OPTS = --to docx --listings
 PANDOC_HTML_OPTS = --to html5 --self-contained --number-sections --listings
 LILYPOND=lilypond
@@ -21,7 +21,7 @@ all:
 	@echo "Modify the Makefile to fit your target"
 
 %.tex: %.md
-	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown+pipe_tables -o $@ $<
 
 %.pdf: %.tex
 	latexmk -silent -rules -xelatex $<
@@ -31,15 +31,15 @@ all:
 %.pdf: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 ## %.pdf: %.md
-## 	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown  -o $@ $<
+## 	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown+pipe_tables  -o $@ $<
 
 
 %.docx: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
 %.docx: %.md
-	pandoc ${PANDOC_OPTS} ${PANDOC_DOCX_OPTS} -f markdown -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_DOCX_OPTS} -f markdown+pipe_tables -o $@ $<
 %.odt: %.md
-	pandoc ${PANDOC_OPTS} -f markdown -t odt -o $@ $<
+	pandoc ${PANDOC_OPTS} -f markdown+pipe_tables -t odt -o $@ $<
 
 %.Rout: %.R
 	R CMD BATCH --no-restore $<
@@ -47,7 +47,7 @@ all:
 %.html: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 %.html: %.md
-	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown+pipe_tables -o $@ $<
 %.html: %.tex
 	pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} -f latex -o $@ $<
 
