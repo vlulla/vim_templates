@@ -6,6 +6,9 @@
 .ONESHELL:
 SHELL := bash
 
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
+
 
 .PHONY: all clean message
 .DEFAULT_GOAL: all
@@ -21,7 +24,7 @@ all:
 	@echo "Modify the Makefile to fit your target"
 
 %.tex: %.md
-	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown+pipe_tables -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown+pipe_tables+footnotes -o $@ $<
 
 %.pdf: %.tex
 	latexmk -silent -rules -xelatex $<
@@ -31,15 +34,15 @@ all:
 %.pdf: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 ## %.pdf: %.md
-## 	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown+pipe_tables  -o $@ $<
+## 	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown+pipe_tables+footnotes  -o $@ $<
 
 
 %.docx: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
 %.docx: %.md
-	pandoc ${PANDOC_OPTS} ${PANDOC_DOCX_OPTS} -f markdown+pipe_tables -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_DOCX_OPTS} -f markdown+pipe_tables+footnotes -o $@ $<
 %.odt: %.md
-	pandoc ${PANDOC_OPTS} -f markdown+pipe_tables -t odt -o $@ $<
+	pandoc ${PANDOC_OPTS} -f markdown+pipe_tables+footnotes -t odt -o $@ $<
 
 %.Rout: %.R
 	R CMD BATCH --no-restore $<
@@ -47,7 +50,7 @@ all:
 %.html: %.Rmd
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 %.html: %.md
-	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown+pipe_tables -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown+pipe_tables+footnotes -o $@ $<
 %.html: %.tex
 	pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} -f latex -o $@ $<
 
