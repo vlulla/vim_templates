@@ -1,6 +1,6 @@
 ---
 title: "Title goes here"
-auhtor: "[Vijay Lulla](http://vijaylulla.com)"
+author: "[Vijay Lulla](http://vijaylulla.com)"
 date: "Date here"
 output:
   html_document:

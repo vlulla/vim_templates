@@ -27,7 +27,9 @@ all:
 	pandoc ${PANDOC_OPTS} ${PANDOC_PDF_OPTS} -f markdown+pipe_tables+footnotes -o $@ $<
 
 %.pdf: %.tex
-	latexmk -silent -rules -xelatex $<
+	sed -i -e 's@\\linethickness@0.5pt@g' $<
+	## latexmk -silent -rules -pdf $<
+	latexmk -silent -rules -pdf $<
 	latexmk -silent -pdf -c $<
 %.pdf: %.ly
 	${LILYPOND} $<
