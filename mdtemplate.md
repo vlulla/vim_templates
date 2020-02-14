@@ -12,7 +12,20 @@ output:
     number_sections: true
   word_document:
     fig_caption: true
+documentclass: scrartcl
+fontfamily: libertinus
+fontfamilyoptions:
+- osf
+- p
 fontsize: 11pt
+microtypeoptions:
+- final
+- tracking=true
+- kerning=true
+- spacing=true
+- factor=1100
+- stretch=10
+- shrink=10
 lot: true
 lof: true
 geometry: margin=1in
