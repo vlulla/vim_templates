@@ -29,6 +29,7 @@ microtypeoptions:
 lot: true
 lof: true
 geometry: margin=1in
+urlcolor: blue
 bibliography: mybibliography.bib
 csl: apa.csl
 ---
@@ -131,6 +132,14 @@ up correctly.  Check out the example:
 Discuss your results here.  Instead of describing the tables and/or figures try
 to explain how to interpret what we're seeing in the tables, figures, and
 charts.
+
+Here's some example of math.
+Depending upon the value of $x$ the equation $f(x) = \sum_{i=0}^{n} \frac{a_i}{1+x}$ may diverge or converge.
+And here's that same equation in display mode.
+$$
+f(x) = \sum_{i=0}^{n} \frac{a_i}{1+x}
+$$
+And the next line continues below it!
 
 # Discussions {#discussion}
 
