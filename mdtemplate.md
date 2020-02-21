@@ -2,6 +2,14 @@
 title: "Title goes here"
 author: "[Vijay Lulla](http://vijaylulla.com)"
 date: "Date here"
+subtitle: "subtitle here"
+keywords:
+- keyword 1
+- keyword 2
+abstract: |
+  Put the multline abstract here!
+
+  It can contain multiple paragraphs too.
 output:
   html_document:
     number_sections: true
