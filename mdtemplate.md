@@ -10,18 +10,7 @@ abstract: |
   Put the multline abstract here!
 
   It can contain multiple paragraphs too.
-output:
-  html_document:
-    number_sections: true
-    fig_caption: true
-    code_folding: hide
-  pdf_document:
-    keep_tex: false
-    number_sections: true
-  word_document:
-    fig_caption: true
 documentclass: scrartcl
-fontfamily: libertinus
 fontfamilyoptions:
 - osf
 - p
