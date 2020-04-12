@@ -10,7 +10,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 
-.PHONY: all clean cleanall
+.PHONY: all clean message cleanall
 .DEFAULT_GOAL: all
 
 R_OPTS = --no-restore --no-init-file --no-site-file
@@ -25,10 +25,12 @@ all:
 	pandoc ${PANDOC_OPTS} -t latex -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
 
 %.pdf: %.tex
-	sed -i -e 's@\\linethickness@0.5pt@g' $<
-	## latexmk -silent -rules -pdf $<
+	# sed -i -e 's@\\linethicknes@2 pt@g' $<
+	# latexmk -silent -rules -pdf -xelatex $<
+	# latexmk -silent -pdflua $<  # Does not work with microtypeoptions
 	latexmk -silent -pdf $<
 	latexmk -silent -pdf -c $<
+	# open $@
 %.pdf: %.ly
 	${LILYPOND} $<
 %.pdf: %.Rmd
@@ -51,10 +53,14 @@ all:
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 %.html: %.md
 	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
+	# sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
+	# open $@
 %.html: %.tex
 	pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} -f latex -o $@ $<
 
 clean:
-	rm -rf *.Rout *.RData
+	@echo "Do cleaning here"
+	rm -rf *.Rout .RData
 
 cleanall: clean
+	@echo "Do some specialized cleaning here...

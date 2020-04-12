@@ -1,8 +1,10 @@
 ---
 title: "Title goes here"
-author: "[Vijay Lulla](http://vijaylulla.com)"
-date: "Date here"
 subtitle: "subtitle here"
+author:
+- "[Vijay Lulla](http://vijaylulla.com)"
+- Author Two
+date: "Date here"
 keywords:
 - keyword 1
 - keyword 2
@@ -15,18 +17,25 @@ fontfamilyoptions:
 - osf
 - p
 fontsize: 11pt
+toc: true
+lot: true
+lof: true
+geometry:
+- margin=1in
+- heightrounded
+hyperrefoptions:
+- linktoc=all
+- pdfwindowui
+urlcolor: blue
+linkcolor: red
 microtypeoptions:
 - final
 - tracking=true
 - kerning=true
 - spacing=true
 - factor=1100
-- stretch=10
 - shrink=10
-lot: true
-lof: true
-geometry: margin=1in
-urlcolor: blue
+- stretch=10
 bibliography: mybibliography.bib
 csl: apa.csl
 ---
@@ -43,6 +52,7 @@ in markdown files:
 - **Bolded text**
 - ~~Strikethrough~~
 - _Emphasized **with bolded**_
+- [Small caps]{.smallcaps} -- Example of small caps
 
 It is usually multiple paragraphs.  And, it can contain subsections too!
 
