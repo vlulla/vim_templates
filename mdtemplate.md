@@ -37,6 +37,7 @@ microtypeoptions:
 - shrink=10
 - stretch=10
 bibliography: mybibliography.bib
+link-citations: true
 csl: apa.csl
 ---
 

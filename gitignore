@@ -41,4 +41,4 @@ __pycache__/
 *.utf8.md
 *.knit.md
 .Renviron
-
+*.Rout
