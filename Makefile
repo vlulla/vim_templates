@@ -21,41 +21,41 @@ LILYPOND=lilypond
 all:
 	@echo "Modify the Makefile to fit your target"
 
-%.tex: %.md
+%.tex: %.md Makefile
 	pandoc ${PANDOC_OPTS} -t latex -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
 
-%.pdf: %.tex
-	# sed -i -e 's@\\linethicknes@2 pt@g' $<
+%.pdf: %.tex Makefile
+	sed -i -e 's@\\linethicknes@2 pt@g' $<
 	# latexmk -silent -rules -pdf -xelatex $<
 	# latexmk -silent -pdflua $<  # Does not work with microtypeoptions
 	latexmk -silent -pdf $<
 	latexmk -silent -pdf -c $<
 	# open $@
-%.pdf: %.ly
+%.pdf: %.ly Makefile
 	${LILYPOND} $<
-%.pdf: %.Rmd
+%.pdf: %.Rmd Makefile
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
-## %.pdf: %.md
+## %.pdf: %.md Makefile
 ## 	pandoc ${PANDOC_OPTS} -t latex -f markdown+pipe_tables+footnotes+tex_math_dollars  -o $@ $<
 
 
-%.docx: %.Rmd
+%.docx: %.Rmd Makefile
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
-%.docx: %.md
+%.docx: %.md Makefile
 	pandoc ${PANDOC_OPTS} -t docx -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
-%.odt: %.md
+%.odt: %.md Makefile
 	pandoc ${PANDOC_OPTS} -f markdown+pipe_tables+footnotes+tex_math_dollars -t odt -o $@ $<
 
-%.Rout: %.R
+%.Rout: %.R Makefile
 	R CMD BATCH --no-restore $<
 
-%.html: %.Rmd
+%.html: %.Rmd Makefile
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
-%.html: %.md
+%.html: %.md Makefile
 	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
 	# sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
 	# open $@
-%.html: %.tex
+%.html: %.tex Makefile
 	pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} -f latex -o $@ $<
 
 clean:
@@ -63,4 +63,4 @@ clean:
 	rm -rf *.Rout .RData
 
 cleanall: clean
-	@echo "Do some specialized cleaning here...
+	@echo "Do some specialized cleaning here..."
