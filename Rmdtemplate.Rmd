@@ -1,6 +1,6 @@
 ---
 title: "Title goes here"
-auhtor: "[Vijay Lulla](http://vijaylulla.com)"
+auhtor: "[Vijay Lulla](https://vlulla.github.io)"
 date: "`r strftime(Sys.Date(), '%Y.%m.%D')`"
 output:
   html_document:

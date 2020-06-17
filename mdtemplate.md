@@ -2,7 +2,7 @@
 title: "Title goes here"
 subtitle: "subtitle here"
 author:
-- "[Vijay Lulla](http://vijaylulla.com)"
+- "[Vijay Lulla](https://vlulla.github.io/)"
 - Author Two
 date: "Date here"
 keywords:
