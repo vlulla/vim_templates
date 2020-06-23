@@ -25,7 +25,7 @@ all:
 	pandoc ${PANDOC_OPTS} -t latex -o $@ $<
 
 %.pdf: %.tex Makefile
-	sed -i -e 's@\\linethicknes@2 pt@g' $<
+	sed -i -e 's@\\linethickness@2 pt@g' $<
 	# latexmk -silent -rules -pdf -xelatex $<
 	# latexmk -silent -pdflua $<  # Does not work with microtypeoptions
 	latexmk -silent -pdf $<
@@ -47,7 +47,7 @@ all:
 	pandoc ${PANDOC_OPTS} -t odt -o $@ $<
 
 %.Rout: %.R Makefile
-	R CMD BATCH --no-restore $<
+	R CMD BATCH --no-save --no-restore $<
 
 %.html: %.Rmd Makefile
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
