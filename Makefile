@@ -14,7 +14,7 @@ MAKEFLAGS += --no-builtin-rules
 .DEFAULT_GOAL: all
 
 R_OPTS = --no-restore --no-init-file --no-site-file
-PANDOC_OPTS=--standalone --listings --toc --toc-depth=2 --filter=pandoc-citeproc
+PANDOC_OPTS=-f markdown+pipe_tables+footnotes+tex_math_dollars+implicit_figures --standalone --listings --toc --toc-depth=2 --filter=pandoc-citeproc
 PANDOC_HTML_OPTS = -t html5 --self-contained --number-sections --listings --mathml --email-obfuscation=references 
 LILYPOND=lilypond
 
@@ -22,7 +22,7 @@ all:
 	@echo "Modify the Makefile to fit your target"
 
 %.tex: %.md Makefile
-	pandoc ${PANDOC_OPTS} -t latex -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
+	pandoc ${PANDOC_OPTS} -t latex -o $@ $<
 
 %.pdf: %.tex Makefile
 	sed -i -e 's@\\linethicknes@2 pt@g' $<
@@ -36,15 +36,15 @@ all:
 %.pdf: %.Rmd Makefile
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 ## %.pdf: %.md Makefile
-## 	pandoc ${PANDOC_OPTS} -t latex -f markdown+pipe_tables+footnotes+tex_math_dollars  -o $@ $<
+## 	pandoc ${PANDOC_OPTS} -t latex  -o $@ $<
 
 
 %.docx: %.Rmd Makefile
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
 %.docx: %.md Makefile
-	pandoc ${PANDOC_OPTS} -t docx -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
+	pandoc ${PANDOC_OPTS} -t docx -o $@ $<
 %.odt: %.md Makefile
-	pandoc ${PANDOC_OPTS} -f markdown+pipe_tables+footnotes+tex_math_dollars -t odt -o $@ $<
+	pandoc ${PANDOC_OPTS} -t odt -o $@ $<
 
 %.Rout: %.R Makefile
 	R CMD BATCH --no-restore $<
@@ -52,7 +52,7 @@ all:
 %.html: %.Rmd Makefile
 	R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 %.html: %.md Makefile
-	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -f markdown+pipe_tables+footnotes+tex_math_dollars -o $@ $<
+	pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -o $@ $<
 	# sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
 	# open $@
 %.html: %.tex Makefile
