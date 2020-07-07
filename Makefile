@@ -52,7 +52,7 @@ all:
 > pandoc ${PANDOC_OPTS} -t odt -o $@ $<
 
 %.Rout: %.R Makefile
-> R CMD BATCH --no-restore $<
+> R CMD BATCH --no-save --no-restore $<
 
 %.html: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
