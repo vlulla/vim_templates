@@ -16,7 +16,7 @@ MAKEFLAGS += --no-builtin-rules
 
 R_OPTS = --no-restore --no-init-file --no-site-file
 PANDOC_OPTS=-f markdown+pipe_tables+footnotes+tex_math_dollars+implicit_figures --standalone --listings --toc --toc-depth=2 --filter=pandoc-citeproc
-PANDOC_HTML_OPTS = -t html5 --self-contained --number-sections --listings --mathml --email-obfuscation=references 
+PANDOC_HTML_OPTS = -t html5 --self-contained --number-sections --listings --mathjax --email-obfuscation=references
 LILYPOND=lilypond
 
 all:
