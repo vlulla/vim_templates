@@ -15,8 +15,8 @@ MAKEFLAGS += --no-builtin-rules
 .DEFAULT_GOAL: all
 
 R_OPTS = --no-restore --no-init-file --no-site-file
-PANDOC_OPTS=-f markdown+pipe_tables+footnotes+tex_math_dollars+implicit_figures --standalone --listings --toc --toc-depth=2 --filter=pandoc-citeproc
-PANDOC_HTML_OPTS = -t html5 --self-contained --number-sections --listings --mathjax --email-obfuscation=references
+PANDOC_OPTS=--from=markdown+pipe_tables+footnotes+tex_math_dollars+implicit_figures --standalone --listings --toc --toc-depth=2 --filter=pandoc-citeproc
+PANDOC_HTML_OPTS=--to=html5 --self-contained --number-sections --listings --mathjax --email-obfuscation=references
 LILYPOND=lilypond
 
 all:
@@ -52,7 +52,7 @@ all:
 > pandoc ${PANDOC_OPTS} -t odt -o $@ $<
 
 %.Rout: %.R Makefile
-> R CMD BATCH --no-save --no-restore $<
+> R CMD BATCH --no-restore $<
 
 %.html: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
