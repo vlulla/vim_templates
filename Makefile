@@ -23,7 +23,11 @@ all:
 > @echo "Modify the Makefile to fit your target"
 
 %.tex: %.md Makefile
-> pandoc ${PANDOC_OPTS} -t latex -o $@ $<
+> pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
+
+## For debugging
+%.native: %.md
+> pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
 
 %.pdf: %.tex Makefile
 > sed -i -e 's@\\linethicknes@2 pt@g' $<
@@ -40,16 +44,16 @@ all:
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 
 ## %.pdf: %.md Makefile
-## 	pandoc ${PANDOC_OPTS} -t latex  -o $@ $<
+## 	pandoc ${PANDOC_OPTS} --to=latex  --output=$@ $<
 
 %.docx: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
 
 %.docx: %.md Makefile
-> pandoc ${PANDOC_OPTS} -t docx -o $@ $<
+> pandoc ${PANDOC_OPTS} --to=docx --output=$@ $<
 
 %.odt: %.md Makefile
-> pandoc ${PANDOC_OPTS} -t odt -o $@ $<
+> pandoc ${PANDOC_OPTS} --to=odt --output=$@ $<
 
 %.Rout: %.R Makefile
 > R CMD BATCH --no-restore $<
@@ -58,12 +62,12 @@ all:
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 
 %.html: %.md Makefile
-> pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} -o $@ $<
+> pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
 > # sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
 > # open $@
 
 %.html: %.tex Makefile
-> pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} -f latex -o $@ $<
+> pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<
 
 clean:
 > @echo "Do cleaning here"
