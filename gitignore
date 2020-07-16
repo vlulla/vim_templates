@@ -42,3 +42,14 @@ __pycache__/
 *.knit.md
 .Renviron
 *.Rout
+*-Ex.R
+/*.tar.gz
+/*.Rcheck/
+.Rproj.user/
+vignettes/*.html
+vignettes/*.pdf
+
+.httr-oauth
+
+/*_cache/
+/cache/
