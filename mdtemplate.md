@@ -13,6 +13,7 @@ abstract: |
 
   It can contain multiple paragraphs too.
 documentclass: scrartcl
+fontfamily: libertinus
 fontfamilyoptions:
 - osf
 - p
@@ -26,6 +27,8 @@ geometry:
 hyperrefoptions:
 - linktoc=all
 - pdfwindowui
+linestretch: 1
+pagestyle: headings
 urlcolor: blue
 linkcolor: red
 microtypeoptions:

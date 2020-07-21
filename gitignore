@@ -48,6 +48,8 @@ __pycache__/
 .Rproj.user/
 vignettes/*.html
 vignettes/*.pdf
+src/*.o
+src/*.so
 
 .httr-oauth
 
