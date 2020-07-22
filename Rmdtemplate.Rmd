@@ -1,7 +1,7 @@
 ---
 title: "Title goes here"
-auhtor: "[Vijay Lulla](https://vlulla.github.io)"
-date: "`r strftime(Sys.Date(), '%Y.%m.%D')`"
+author: "[Vijay Lulla](https://vlulla.github.io)"
+date: "`r strftime(Sys.Date(), format='%Y.%m.%d')`"
 output:
   html_document:
     number_sections: true
