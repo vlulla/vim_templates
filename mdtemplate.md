@@ -65,6 +65,7 @@ Here's how to do some common font formatting in markdown files:
 - ~~Strikethrough~~
 - _Emphasized **with bolded**_
 - [Small caps]{.smallcaps} -- Example of small caps
+<!-- end of list -->
 
 The above is an example of creating a *bullet* (or unordered) list. This same list can be rendered as a "loose" list like so:
 
@@ -81,6 +82,7 @@ The above is an example of creating a *bullet* (or unordered) list. This same li
 - _Emphasized **with bolded**_
 
 - [Small caps]{.smallcaps} -- Example of small caps
+<!-- end of list -->
 
 Sections can contain many paragraphs.
 And, a paragraph is a     collection of sentences with newlines on either sided (beginning and ending).
@@ -146,12 +148,14 @@ list items start with `*`, `-`, `+`.  They can be nested.  Here's an example:
       - sub sub item one
       - sub sub item three
    - sub item three
+<!-- end of list -->
 
 Here's another unordered list example:
 
 * item 1
 * item 2
 * **bold item 3**
+<!-- end of list -->
 
 Ordered list items start with numbers.  And, here's a neat tip: don't bother
 numbering them yourself...just use the same number for each item and it will show
@@ -172,6 +176,12 @@ up correctly.  Check out the example:
    at least three spaces!
    1. ordered sub item
    1. ordered sub item
+
+<!-- -->
+
+#. Include the `<!-- -->` empty html tag to break consecutive lists! Or better
+   yet include `<!-- end of list -->` explicitly after end of each list.
+#. This is a distinct list from previous list.
 
 In general, try to avoid having too many [un]ordered lists.
 While lists are helpful for quick skimming or ensuring that steps are followed, try to
