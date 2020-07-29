@@ -269,7 +269,7 @@ def average(*nums):
 
 And the above R code can be expressed as code listing/highlighting:
 
-```r
+```{.r .numberLines .lineAnchors startFrom="1" }
 randstr <- function(length=10) {
   paste0(sample(c(letters, LETTERS), length, replace=TRUE), collapse="")
 }
