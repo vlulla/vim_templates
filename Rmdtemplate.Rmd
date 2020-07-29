@@ -35,7 +35,7 @@ bibliography: mybibliography.bib
 
 
 ```{r global_options, echo=FALSE, include=FALSE}
-knitr::opts_chunk$set(echo=TRUE, collapse=TRUE, fig.width=8, fig.height=6, fig.path="figs/")
+knitr::opts_chunk$set(echo=TRUE, collapse=TRUE, message=FALSE, warning=FALSE, dpi=150, fig.width=8, fig.height=6, fig.path="figs/")
 ```
 
 # Introduction {#intro}
