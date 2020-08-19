@@ -30,7 +30,7 @@ all:
 > pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
 
 %.pdf: %.tex Makefile
-> sed -i -e 's@\\linethicknes@2 pt@g' $<
+> sed -i -e 's@\\linethickness@2 pt@g' $<
 > # latexmk -silent -rules -pdf -xelatex $<
 > # latexmk -silent -pdflua $<  # Does not work with microtypeoptions
 > latexmk -silent -pdf $<
