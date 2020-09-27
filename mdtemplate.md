@@ -18,9 +18,6 @@ fontfamilyoptions:
 - osf
 - p
 fontsize: 11pt
-toc: true
-lot: true
-lof: true
 geometry:
 - margin=1in
 - heightrounded
