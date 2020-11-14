@@ -1,6 +1,6 @@
 ---
 title: "Title goes here"
-author: "[Vijay Lulla](https://vlulla.github.io)"
+author: "[Vijay Lulla](https://vlulla.github.io/)"
 date: "`r strftime(Sys.Date(), format='%Y.%m.%d')`"
 output:
   html_document:
@@ -31,10 +31,12 @@ lof: true
 
 geometry: margin=1in
 bibliography: mybibliography.bib
+csl: apa.csl
 ---
 
 
 ```{r global_options, echo=FALSE, include=FALSE}
+knitr::opts_knit$set(progress=FALSE, verbose=TRUE)
 knitr::opts_chunk$set(echo=TRUE, collapse=TRUE, message=FALSE, warning=FALSE, dpi=150, fig.width=8, fig.height=6, fig.path="figs/")
 ```
 

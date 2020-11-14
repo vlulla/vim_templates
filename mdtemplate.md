@@ -13,7 +13,6 @@ abstract: |
 
   It can contain multiple paragraphs too.
 documentclass: scrartcl
-fontfamily: libertinus
 fontfamilyoptions:
 - osf
 - p
