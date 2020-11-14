@@ -55,3 +55,7 @@ src/*.so
 
 /*_cache/
 /cache/
+
+# jekyll related
+_site/
+.jekyll-cache/
