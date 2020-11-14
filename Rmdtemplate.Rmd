@@ -13,7 +13,6 @@ output:
   word_document:
     fig_caption: true
 documentclass: scrartcl
-fontfamily: libertinus
 fontfamilyoptions:
 - osf
 - p
@@ -22,22 +21,23 @@ microtypeoptions:
 - final
 - tracking=true
 - kerning=true
-- spacing=true
 - factor=1100
 - stretch=10
 - shrink=10
+toc: true
 lot: true
 lof: true
-
-geometry: margin=1in
-bibliography: mybibliography.bib
-csl: apa.csl
+urlcolor: "blue"
+geometry: "margin=1in"
+bibliography: "mybibliography.bib"
+csl: "apa.csl"
 ---
 
 
-```{r global_options, echo=FALSE, include=FALSE}
+```{r, label="global_options", echo=FALSE, include=FALSE}
 knitr::opts_knit$set(progress=FALSE, verbose=TRUE)
-knitr::opts_chunk$set(echo=TRUE, collapse=TRUE, message=FALSE, warning=FALSE, dpi=150, fig.width=8, fig.height=6, fig.path="figs/")
+knitr::opts_chunk$set(echo=FALSE, collapse=TRUE, message=FALSE, warning=FALSE,
+                      dpi=150, fig.width=8, fig.height=6, fig.path="figs/")
 ```
 
 # Introduction {#intro}
@@ -60,7 +60,7 @@ where you got the data from!
 
 ## Libraries {#libraries}
 
-```{r, message=FALSE}
+```{r, echo=TRUE, label="libraries", message=FALSE}
 library(data.table)
 library(magrittr)
 library(sf)
@@ -78,10 +78,13 @@ More description of the data if required.
 
 Discuss your results here.  Instead of describing the tables and/or figures try
 to explain how to interpret what we're seeing in the tables, figures, and
-charts.
+charts. Try to assign a label to at least your plot generating code chunks
+since the generated file names in the `fig.path` dir (set in the
+`global_options` above) will be named using this label.
 
-```{r, fig.cap="My first figure"}
-with(mtcars, plot(mpg, drat, xlab="Miles/gallon", ylab="Rear axle drag ratio", pch=20))
+```{r, label="mpg_vs_drat", fig.cap="My first figure"}
+with(mtcars, plot(mpg, drat, xlab="Miles/gallon", ylab="Rear axle drag ratio",
+                  pch=3))
 ```
 
 # Discussions {#discussion}
@@ -118,7 +121,7 @@ To include  a list just create a correctly aligned bullet-list like so:
 * item 1
 * item 2
 * **bold item 3**
-* 3 * 2 + 5 = `r 3 * 2 + 5`
+* $3 \times 2 + 5 =$ `r 3 * 2 + 5`
 
 And here's an example of block quote:
 
