@@ -1,4 +1,6 @@
 .git
 .cache
 **/*.class
+.dockerignore
+Dockerfile
 
