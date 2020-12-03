@@ -23,57 +23,51 @@ all:
 > @echo "Modify the Makefile to fit your target"
 
 %.tex: %.md Makefile
-> @pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
+> pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
 
 ## For debugging
 %.native: %.md
-> @pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
+> pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
 
 %.pdf: %.tex Makefile
-> @echo "creating $@"
-> @sed -i -e 's@\\linethickness@2 pt@g' $<
-> # @latexmk -silent -rules -pdf -xelatex $<
-> # @latexmk -silent -pdflua $<  # Does not work with microtypeoptions
-> @latexmk -silent -pdf $<
-> @latexmk -silent -pdf -c $<
-> # @open $@
+> sed -i -e 's@\\linethickness@2 pt@g' $<
+> # latexmk -silent -rules -pdf -xelatex $<
+> # latexmk -silent -pdflua $<  # Does not work with microtypeoptions
+> latexmk -silent -pdf $<
+> latexmk -silent -pdf -c $<
+> # open $@
 
 %.pdf: %.ly Makefile
-> @echo "creating $@"
-> @${LILYPOND} $<
+> ${LILYPOND} $<
 
 %.pdf: %.Rmd Makefile
-> @echo "creating $@"
-> @R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
+> R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 
 ## %.pdf: %.md Makefile
 ## 	pandoc ${PANDOC_OPTS} --to=latex  --output=$@ $<
 
 %.docx: %.Rmd Makefile
-> @echo "creating $@"
-> @R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
+> R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
 
 %.docx: %.md Makefile
-> @pandoc ${PANDOC_OPTS} --to=docx --output=$@ $<
+> pandoc ${PANDOC_OPTS} --to=docx --output=$@ $<
 
 %.odt: %.md Makefile
-> @pandoc ${PANDOC_OPTS} --to=odt --output=$@ $<
+> pandoc ${PANDOC_OPTS} --to=odt --output=$@ $<
 
 %.Rout: %.R Makefile
-> @R CMD BATCH --no-restore $<
+> R CMD BATCH --no-restore $<
 
 %.html: %.Rmd Makefile
-> @R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
+> R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 
 %.html: %.md Makefile
-> @echo "creating $@"
-> @pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
-> # @sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
-> # @open $@
+> pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
+> # sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
+> # open $@
 
 %.html: %.tex Makefile
-> @echo "creating $@"
-> @pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<
+> pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<
 
 clean:
 > @echo "Do cleaning here"
