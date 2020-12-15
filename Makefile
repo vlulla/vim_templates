@@ -15,7 +15,7 @@ MAKEFLAGS += --no-builtin-rules
 .DEFAULT_GOAL: all
 
 R_OPTS = --no-restore --no-init-file --no-site-file
-PANDOC_OPTS=--from=markdown+pipe_tables+footnotes+tex_math_dollars+implicit_figures+fenced_code_attributes --standalone --listings --wrap=none --citeproc --toc --toc-depth=2
+PANDOC_OPTS=--from=markdown --standalone --listings --wrap=none --citeproc --toc --toc-depth=2
 PANDOC_HTML_OPTS=--to=html5 --standalone --number-sections --listings --mathjax --email-obfuscation=references --highlight-style=tango
 LILYPOND=lilypond
 
@@ -44,7 +44,7 @@ all:
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 
 ## %.pdf: %.md Makefile
-## 	pandoc ${PANDOC_OPTS} --to=latex  --output=$@ $<
+## > pandoc ${PANDOC_OPTS} --to=latex  --output=$@ $<
 
 %.docx: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"

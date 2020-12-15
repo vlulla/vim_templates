@@ -61,6 +61,8 @@ Here's how to do some common font formatting in markdown files:
 - ~~Strikethrough~~
 - _Emphasized **with bolded**_
 - [Small caps]{.smallcaps} -- Example of small caps
+- Feas*ible*, not feas*able*.
+- H~2~O is liquid. 2^10^ is 1024. And, subscript with space P~a\ cat~.
 <!-- end of list -->
 
 The above is an example of creating a *bullet* (or unordered) list. This same list can be rendered as a "loose" list like so:
@@ -78,7 +80,23 @@ The above is an example of creating a *bullet* (or unordered) list. This same li
 - _Emphasized **with bolded**_
 
 - [Small caps]{.smallcaps} -- Example of small caps
+
+- Feas*ible*, not feas*able*.
+
+- H~2~O is liquid. 2^10^ is 1024. And, subscript with space P~a\ cat~.
 <!-- end of list -->
+
+Line blocks are very useful. Especially for formatting addresses and/or poetry with
+specific spacing requirements! Check out how to use line blocks.
+
+| Vijay Lulla PhD
+| Dept. of Geography
+| Indiana University-Purdue Unversity Indianapolis
+| 420 University Blvd, CA-207C
+| Indianapolis, IN-46202
+|
+| [vlulla@iupui.edu](mailto:vlulla@iupui.edu)
+| **Ph:**
 
 Sections can contain many paragraphs.
 And, a paragraph is a     collection of sentences with newlines on either sided (beginning and ending).
