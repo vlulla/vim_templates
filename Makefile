@@ -15,8 +15,8 @@ MAKEFLAGS += --no-builtin-rules
 .DEFAULT_GOAL: all
 
 R_OPTS = --no-restore --no-init-file --no-site-file
-PANDOC_OPTS=--from=markdown --standalone --listings --wrap=none --citeproc --toc --toc-depth=2
-PANDOC_HTML_OPTS=--to=html5 --standalone --number-sections --listings --mathjax --email-obfuscation=references --highlight-style=tango
+PANDOC_OPTS=--from=markdown --standalone --listings --highlight-style=tango --wrap=none --citeproc --toc --toc-depth=2
+PANDOC_HTML_OPTS=--to=html5 --number-sections --mathjax --email-obfuscation=references
 LILYPOND=lilypond
 
 all:
