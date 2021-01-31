@@ -9,3 +9,12 @@ IFS=$'\n\t'
 ## If some program needs IFS to be set to traditional value then
 ## you can just do IFS="${traditionalIFS}" and then run your program.
 
+tmpdir=$(mktemp -d tmp.VL.$$.XXXXXXXXXX)
+cleanup() {
+  rm -rf ${tmpdir}
+}
+trap cleanup EXIT
+
+## Now you can read/write files into this tmpdir and when the script ends it will 
+## cleanup the temporary directory.
+
