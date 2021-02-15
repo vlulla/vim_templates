@@ -13,7 +13,7 @@ tmpdir=$(mktemp -d tmp.VL.$$.XXXXXXXXXX)
 cleanup() {
   rm -rf ${tmpdir}
 }
-trap cleanup EXIT
+trap cleanup EXIT QUIT INT
 
 ## Now you can read/write files into this tmpdir and when the script ends it will 
 ## cleanup the temporary directory.
