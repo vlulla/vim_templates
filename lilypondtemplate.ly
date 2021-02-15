@@ -18,7 +18,7 @@
 voiceconsts = {
   \key c \major
   \numericTimeSignature
-  \compressFullBarRests
+  \compressEmptyMeasures
   \tempo "<<<TEMPO HERE>>>" 4 = 60
 }
 
