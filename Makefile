@@ -64,6 +64,7 @@ all:
 %.html: %.md Makefile
 > pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
 > # sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
+> # sed -i -e 's@<span class="math inline">\\(\\Rightarrow\\)</span>@\&rarr;@g' $@
 > # open $@
 
 %.html: %.tex Makefile
