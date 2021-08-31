@@ -22,20 +22,32 @@ LILYPOND=lilypond
 all:
 > @echo "Modify the Makefile to fit your target"
 
-%.tex: %.md Makefile
-> pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
-
 ## For debugging
 %.native: %.md
 > pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
 
-%.pdf: %.tex Makefile
-> sed -i -e 's@\\linethickness@2 pt@g' $<
-> # latexmk -silent -rules -pdf -xelatex $<
-> # latexmk -silent -pdflua $<  # Does not work with microtypeoptions
-> latexmk -silent -pdf $<
-> latexmk -silent -pdf -c $<
-> # open $@
+%.pdf: %.md Makefile
+> pandoc ${PANDOC_OPTS} --to=latex  --output=$@ $<
+
+%.html: %.md Makefile
+> pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
+
+%.docx: %.md Makefile
+> pandoc ${PANDOC_OPTS} --to=docx --output=$@ $<
+
+%.odt: %.md Makefile
+> pandoc ${PANDOC_OPTS} --to=odt --output=$@ $<
+
+## %.tex: %.md Makefile
+## > pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
+##
+## %.pdf: %.tex Makefile
+## > sed -i -e 's@\\linethickness@2 pt@g' $<
+## > # latexmk -silent -rules -pdf -xelatex $<
+## > # latexmk -silent -pdflua $<  # Does not work with microtypeoptions
+## > latexmk -silent -pdf $<
+## > latexmk -silent -pdf -c $<
+## > # open $@
 
 %.pdf: %.ly Makefile
 > ${LILYPOND} $<
@@ -43,17 +55,8 @@ all:
 %.pdf: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 
-## %.pdf: %.md Makefile
-## > pandoc ${PANDOC_OPTS} --to=latex  --output=$@ $<
-
 %.docx: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
-
-%.docx: %.md Makefile
-> pandoc ${PANDOC_OPTS} --to=docx --output=$@ $<
-
-%.odt: %.md Makefile
-> pandoc ${PANDOC_OPTS} --to=odt --output=$@ $<
 
 %.Rout: %.R Makefile
 > R CMD BATCH --no-restore $<
