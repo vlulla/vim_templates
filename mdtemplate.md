@@ -90,13 +90,9 @@ Line blocks are very useful. Especially for formatting addresses and/or poetry w
 specific spacing requirements! Check out how to use line blocks.
 
 | Vijay Lulla PhD
-| Dept. of Geography
-| Indiana University-Purdue Unversity Indianapolis
-| 420 University Blvd, CA-207C
-| Indianapolis, IN-46202
 |
-| [vlulla@iupui.edu](mailto:vlulla@iupui.edu)
-| **Ph:**
+| Email: 
+| Ph:
 
 Sections can contain many paragraphs.
 And, a paragraph is a     collection of sentences with newlines on either sided (beginning and ending).

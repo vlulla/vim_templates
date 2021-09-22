@@ -19,15 +19,14 @@ PANDOC_OPTS=--from=markdown --standalone --highlight-style=tango --wrap=none --c
 PANDOC_HTML_OPTS=--to=html5 --number-sections --mathjax --email-obfuscation=references
 LILYPOND=lilypond
 
-all:
-> @echo "Modify the Makefile to fit your target"
+all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 
 ## For debugging
 %.native: %.md
 > pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
 
 %.pdf: %.md Makefile
-> pandoc ${PANDOC_OPTS} --to=latex  --output=$@ $<
+> pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
 
 %.html: %.md Makefile
 > pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
