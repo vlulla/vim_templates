@@ -10,7 +10,6 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-
 .PHONY: all clean message cleanall
 .DEFAULT_GOAL: all
 
@@ -19,7 +18,22 @@ PANDOC_OPTS=--from=markdown --standalone --highlight-style=tango --wrap=none --c
 PANDOC_HTML_OPTS=--to=html5 --number-sections --mathjax --email-obfuscation=references
 LILYPOND=lilypond
 
+CC ?= gcc
+CXX ?= g++
+CFLAGS := $(if $(I),,-Werror) -Wextra -Wall
+CPPFLAGS := $(if $(I),,-Werror) -Wextra -Wall
+
+
 all: $(patsubst %.md,%.pdf,$(wildcard *.md))
+
+%.o: %.c Makefile
+> $(CC) $(CFLAGS) -o $@ $<
+
+%.o: %.cc Makefile
+> $(CXX) $(CPPFLAGS) -o $@ $<
+
+%.o: %.cpp Makefile
+> $(CXX) $(CPPFLAGS) -o $@ $<
 
 ## For debugging
 %.native: %.md
