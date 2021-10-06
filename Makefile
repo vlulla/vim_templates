@@ -35,6 +35,12 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 %.o: %.cpp Makefile
 > $(CXX) $(CPPFLAGS) -o $@ $<
 
+%.pdf: %.dot
+> dot -Tpdf -o $@ $<
+
+%.svg: %.dot
+> dot -Tsvg -o $@ $<
+
 ## For debugging
 %.native: %.md
 > pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
