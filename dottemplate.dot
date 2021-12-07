@@ -1,0 +1,16 @@
+digraph G {
+  node [ fontsize=10, shape=box, height=0.25 ];
+  edge [ color=blue ];
+  General -> Lieutanant1;
+  Lieutanant1 -> Soldier1;
+  Lieutanant1 -> Soldier2;
+  Lieutanant1 -> Soldier3;
+  Lieutanant1 -> Soldier4;
+  General -> Lieutanant2;
+  Lieutanant2 -> Soldier5;
+  Lieutanant2 -> Soldier6;
+  Lieutanant2 -> Soldier7;
+  Lieutanant2 -> Soldier8;
+  Lieutanant2 -> Soldier9;
+  Lieutanant2 -> Soldier10;
+}
