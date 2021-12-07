@@ -3,7 +3,7 @@
 ## Author: Vijay Lulla
 ## Date:
 ##
-import re,os,sys,sqlite3,datetime
+import re,os,sys,sqlite3,datetime,logging
 import numpy as np, pandas as pd
 import matplotlib.pyplot as plt
 # import hypothesis as hy, hypothesis.strategies as st
@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 
 ## import arcpy as ap
 
+logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.INFO, encoding="utf-8", filemode="w")
+
 def f1(**kwargs):
   print("key\tvalue")
   print("---\t-----")
@@ -19,6 +21,7 @@ def f1(**kwargs):
     print(f"{k}\t{v}")
 
 def main():
+    logging.info("In main")
     print("hello world!")
     f1(fname="vijay",lname="lulla",addr="mythical city",salary=5.2)
     f1(x=[1,2,3,4,5],y=[1,2,3,4,5])
