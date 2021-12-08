@@ -15,7 +15,7 @@ def f1(**kwargs):
   print("key\tvalue")
   print("---\t-----")
   for k,v in kwargs.items():
-    print(f"{k}\t{v}")
+    print(f"{k}",f"{v}",sep="\t")
 
 def main():
     logging.info("In main")
