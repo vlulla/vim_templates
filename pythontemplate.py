@@ -1,4 +1,4 @@
-##
+# vim:fileencoding=utf-8:noexpandtab
 ##
 ## Author: Vijay Lulla
 ## Date:
