@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 ## import geopandas as gp, hypothesis as hp
 import functools
 
+Union = typing.Union
+
 logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
 def log(func):
@@ -17,7 +19,7 @@ def log(func):
   def wrapper(*args, **kwargs):
     signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
     logger = logging.getLogger()
-    logger.debug(f"function {func.__name__} called with args ({signature})")
+    logger.debug(f"function {func.__name__} called ==> {func.__name__}({signature})")
     try:
       result = func(*args, **kwargs)
       return result
@@ -35,6 +37,12 @@ def f1(**kwargs):
     print(f"{k}",f"{v}",sep="\t")
 
 @log
+def sum(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a+b
+
+@log
+def prod(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a*b
+
+@log
 def main():
     logging.info("In main")
     print("hello world!")
@@ -42,6 +50,7 @@ def main():
     f1(x=[1,2,3,4,5],y=[1,2,3,4,5])
     million, scaler = 1_000_000, 0.89
     print(f"${million:_d} US = \u20ac{million*scaler:4_.2f}")
+    print(f"sum(2, 18.25) is {sum(2,18.5)} and prod(2, 18.5) is {prod(2,18.5)}")
 
 if __name__ == "__main__":
     main()
