@@ -3,38 +3,37 @@
 ## Author: Vijay Lulla
 ## Date:
 ##
-import re,os,sys,sqlite3,datetime,logging,typing
+import re, os, sys, sqlite3, datetime, logging, typing, functools
 import numpy as np, pandas as pd
 import matplotlib.pyplot as plt
 # import hypothesis as hy, hypothesis.strategies as st
 ## import geopandas as gp, hypothesis as hp
-import functools
 
 Union = typing.Union
 
 logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
 def log(func):
-  @functools.wraps(func)
-  def wrapper(*args, **kwargs):
-    signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
-    logger = logging.getLogger()
-    logger.debug(f"function {func.__name__} called ==> {func.__name__}({signature})")
-    try:
-      result = func(*args, **kwargs)
-      return result
-    except Exception as e:
-      logger.exception(f"Exception raised in {func.__name__}. exception: {e!s}")
-      raise e
-  return wrapper
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
+        logger = logging.getLogger()
+        logger.debug(f"function {func.__name__} called ==> {func.__name__}({signature})")
+        try:
+            result = func(*args, **kwargs)
+            return result
+        except Exception as e:
+            logger.exception(f"Exception raised in {func.__name__}. exception: {e!s}")
+            raise e
+    return wrapper
 
 
 @log
 def f1(**kwargs):
-  print("key\tvalue")
-  print("---\t-----")
-  for k,v in kwargs.items():
-    print(f"{k}",f"{v}",sep="\t")
+    print("key\tvalue")
+    print("---\t-----")
+    for k,v in kwargs.items():
+        print(f"{k}",f"{v}",sep="\t")
 
 @log
 def sum(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a+b
