@@ -1,4 +1,4 @@
-# vim:fileencoding=utf-8:noexpandtab
+# vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=4:softtabstop=4
 ##
 ## Author: Vijay Lulla
 ## Date:
