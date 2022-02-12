@@ -41,6 +41,9 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 %.svg: %.dot
 > dot -Tsvg -o $@ $<
 
+%: %.rs
+> rustc $<
+
 ## For debugging
 %.native: %.md
 > pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
