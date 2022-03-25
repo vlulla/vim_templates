@@ -9,7 +9,7 @@ IFS=$'\n\t'
 ## If some program needs IFS to be set to traditional value then
 ## you can just do IFS="${traditionalIFS}" and then run your program.
 
-tmpdir=$(mktemp -d tmp.VL.$$.XXXXXXXXXX)
+tmpdir=$(mktemp -p /tmp -d tmp.VL.$$.XXXXXXXXXX)
 cleanup() {
   rm -rf ${tmpdir}
 }
