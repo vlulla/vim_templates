@@ -26,13 +26,14 @@ CPPFLAGS := $(if $(I),,-Werror) -Wextra -Wall
 
 all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 
-%.o: %.c Makefile
+
+% %.o: %.c Makefile
 > $(CC) $(CFLAGS) -o $@ $<
 
-%.o: %.cc Makefile
+% %.o: %.cc Makefile
 > $(CXX) $(CPPFLAGS) -o $@ $<
 
-%.o: %.cpp Makefile
+% %.o: %.cpp Makefile
 > $(CXX) $(CPPFLAGS) -o $@ $<
 
 %.pdf: %.dot
