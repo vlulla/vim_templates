@@ -1,5 +1,5 @@
-ThisBuild / name := "<your project name>"
-ThisBuild / organization := "<your organization>"
+name := "<your project name>"
+// organization := "<your organization>"
 ThisBuild / scalaVersion := "2.13.8"
 
 ThisBuild / libraryDependencies ++= Seq(
