@@ -1,11 +1,10 @@
-name := "<your project name>"
-// organization := "<your organization>"
+ThisBuild / organization := "<your organization>"
 ThisBuild / scalaVersion := "2.13.8"
 
-ThisBuild / libraryDependencies ++= Seq(
-    "org.scalatest" %% "scalatest" % "3.2.11"
-    , "org.scalacheck" %% "scalacheck" % "1.16.0" 
-  )
+val scalatest = "org.scalatest" %% "scalatest" % "3.2.11"
+val scalacheck = "org.scalacheck" %% "scalacheck" % "1.16.0"
+
+ThisBuild / libraryDependencies ++= Seq( scalatest, scalacheck )
 
 ThisBuild / scalacOptions ++= Seq(
     "-deprecation"                       // Emit warning and location for usages of deprecated APIs.
@@ -57,3 +56,8 @@ ThisBuild / scalacOptions ++= Seq(
 )
 
 Compile / console / scalacOptions ~= (x => x.filterNot(p => List("-Xfatal-warnings", "-Xfuture", "-Yno-predef").contains(p)))
+
+lazy val root = (project in file("."))
+  .settings(
+    name := "<your project name>"
+  )
