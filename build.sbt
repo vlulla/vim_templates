@@ -55,7 +55,7 @@ ThisBuild / scalacOptions ++= Seq(
   , "-Yno-predef" // no automatic import of Predef (remove irritating implicits) // comment if this causes too much hassle!
 )
 
-Compile / console / scalacOptions ~= (x => x.filterNot(p => List("-Xfatal-warnings", "-Xfuture", "-Yno-predef").contains(p)))
+Compile / console / scalacOptions ~= (x => x.filterNot(p => List("-Xfatal-warnings", "-Xfuture", "-Yno-predef", "-Ywarn-unused:imports").contains(p)))
 
 lazy val root = (project in file("."))
   .settings(
