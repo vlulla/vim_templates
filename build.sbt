@@ -18,7 +18,6 @@ ThisBuild / scalacOptions ++= Seq(
   , "-unchecked"                         // Enable additional warnings where generated code depends on assumptions.
   , "-Xcheckinit"                        // Wrap field accessors to throw an exception on uninitialized access.
   , "-Xfatal-warnings"                   // Fail the compilation if there are any warnings.
-  , "-Xfuture"                           // Turn on future language features.
   , "-Xlint:adapted-args"                // Warn if an argument list is modified to match the receiver.
   // , "-Xlint:by-name-right-associative"   // By-name parameter of right associative operator.
   , "-Xlint:constant"                    // Evaluation of a constant arithmetic expression results in an error.
@@ -55,7 +54,7 @@ ThisBuild / scalacOptions ++= Seq(
   , "-Yno-predef" // no automatic import of Predef (remove irritating implicits) // comment if this causes too much hassle!
 )
 
-Compile / console / scalacOptions ~= (x => x.filterNot(p => List("-Xfatal-warnings", "-Xfuture", "-Yno-predef", "-Ywarn-unused:imports").contains(p)))
+Compile / console / scalacOptions ~= (x => x.filterNot(p => List("-Xfatal-warnings", "-Yno-predef", "-Ywarn-unused:imports").contains(p)))
 
 lazy val root = (project in file("."))
   .settings(
