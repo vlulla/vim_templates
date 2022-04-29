@@ -59,3 +59,6 @@ src/*.so
 # jekyll related
 _site/
 .jekyll-cache/
+
+# sbt related
+target/
