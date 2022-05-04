@@ -3,10 +3,17 @@
 ## Author: Vijay Lulla
 ## Date:
 ##
+## NOTE: To enable running assert statements ensure that PYTHONOPTIMIZE is not set.
+##       It is best to start the script like so:
+##
+##       ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py>
+##
+##       Especially, check out the function test_sum()!! And, check out the log that is generated!
+
 import re, os, sys, sqlite3, datetime, logging, typing, functools
 import numpy as np, pandas as pd
 import matplotlib.pyplot as plt
-# import hypothesis as hy, hypothesis.strategies as st
+import hypothesis as hy, hypothesis.strategies as st
 ## import geopandas as gp, hypothesis as hp
 
 Union = typing.Union
@@ -40,6 +47,18 @@ def sum(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a+b
 
 @log
 def prod(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a*b
+
+@log
+@hy.settings(max_examples=500, verbosity=hy.Verbosity.verbose)
+@hy.given(a=st.one_of(st.integers(), st.floats()), b=st.one_of(st.integers(), st.floats()))
+def test_sum(a: int, b: int) -> None:
+  """ This ought to fail for quite a few cases!!!
+
+      Included here just to demonstrate how to use hypothesis for PBT.
+  """
+  assert a + b == sum(a,b)
+  assert sum(a,b) >= a
+  assert sum(a,b) >= b
 
 @log
 def main():
