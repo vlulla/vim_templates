@@ -51,7 +51,7 @@ def prod(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a*b
 @log
 @hy.settings(max_examples=500, verbosity=hy.Verbosity.verbose)
 @hy.given(a=st.one_of(st.integers(), st.floats()), b=st.one_of(st.integers(), st.floats()))
-def test_sum(a: int, b: int) -> None:
+def test_sum(a: Union[int,float], b:Union[int,float]) -> None:
   """ This ought to fail for quite a few cases!!!
 
       Included here just to demonstrate how to use hypothesis for PBT.
