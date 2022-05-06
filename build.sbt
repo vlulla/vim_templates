@@ -1,10 +1,13 @@
 ThisBuild / organization := "<your organization>"
 ThisBuild / scalaVersion := "3.1.2"
 
-val scalatest = "org.scalatest" %% "scalatest" % "3.2.11"
-val scalacheck = "org.scalacheck" %% "scalacheck" % "1.16.0"
+val scalaTestVersion = "3.2.11"
+val scalaCheckVersion = "1.16.0"
 
-ThisBuild / libraryDependencies ++= Seq( scalatest, scalacheck )
+val scalaTest = "org.scalatest" %% "scalatest" % scalaTestVersion
+val scalaCheck = "org.scalacheck" %% "scalacheck" % scalaCheckVersion
+
+ThisBuild / libraryDependencies ++= Seq( scalaTest, scalaCheck )
 
 ThisBuild / scalacOptions ++= Seq(
     "-deprecation"                       // Emit warning and location for usages of deprecated APIs.
