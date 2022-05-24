@@ -7,7 +7,7 @@ import (
 
 func f1() (int,string) {
     fmt.Println("Hello world")
-    return 42, "Don't Panic"
+    return 4_2, "Don't Panic"
 }
 
 func main() {

@@ -11,7 +11,7 @@ IFS=$'\n\t'
 
 tmpdir=$(mktemp -p /tmp -d tmp.VL.$$.XXXXXXXXXX)
 cleanup() {
-  rm -rf ${tmpdir}
+  rm -rf "${tmpdir}"
 }
 trap cleanup EXIT QUIT INT
 

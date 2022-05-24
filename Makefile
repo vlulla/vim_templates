@@ -98,7 +98,8 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 
 clean:
 > @echo "Do cleaning here"
-> rm -rf *.Rout .RData
+> rm -rf $(patsubst %.md,%.pdf,$(wildcard *.md))
 
 cleanall: clean
 > @echo "Do some specialized cleaning here..."
+> rm -rf *.Rout .RData
