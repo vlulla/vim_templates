@@ -11,7 +11,7 @@
 ##       Especially, check out the function test_sum()!! And, check out the log that is generated!
 
 import re, os, sys, sqlite3, datetime, logging, typing, functools
-import numpy as np, pandas as pd
+import numpy as np, pandas as pd, xarray as xr, zarr
 import matplotlib.pyplot as plt
 import hypothesis as hy, hypothesis.strategies as st
 ## import geopandas as gp, hypothesis as hp
