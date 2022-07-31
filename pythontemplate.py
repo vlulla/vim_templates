@@ -11,13 +11,11 @@
 ##       Especially, check out the function test_sum()!! And, check out the log that is generated!
 
 import re, os, sys, sqlite3, datetime, logging, typing, functools
-import numpy as np, pandas as pd, xarray as xr, zarr,
+import numpy as np, pandas as pd, xarray as xr, zarr
 import dask.dataframe as dd, dask.array as da, dask.bag as db ## for distributed computing!
 import matplotlib.pyplot as plt
 import hypothesis as hy, hypothesis.strategies as st
 ## import geopandas as gp, hypothesis as hp
-
-Union = typing.Union
 
 logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
@@ -44,15 +42,15 @@ def f1(**kwargs):
         print(f"{k}",f"{v}",sep="\t")
 
 @log
-def sum(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a+b
+def sum(a:int | float | complex, b:int | float | complex) -> int | float | complex: return a+b
 
 @log
-def prod(a:Union[int,float], b:Union[int,float]) -> Union[int,float]: return a*b
+def prod(a:int | float | complex, b:int | float | complex) -> int | float | complex: return a*b
 
 @log
 @hy.settings(max_examples=500, verbosity=hy.Verbosity.verbose)
 @hy.given(a=st.one_of(st.integers(), st.floats()), b=st.one_of(st.integers(), st.floats()))
-def test_sum(a: Union[int,float], b:Union[int,float]) -> None:
+def test_sum(a: int | float | complex, b:int | float | complex) -> None:
   """ This ought to fail for quite a few cases!!!
 
       Included here just to demonstrate how to use hypothesis for PBT.
