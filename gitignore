@@ -62,3 +62,6 @@ _site/
 
 # sbt related
 target/
+
+# dask
+dask-worker-space/
