@@ -3,6 +3,9 @@ set -euo pipefail
 traditionalIFS="${IFS}"
 IFS=$'\n\t'
 
+## TRACE=1 ./script.sh to enable debug mode!
+if [[ "${TRACE-0}" == "1" ]]; then set -o xtrace; fi
+
 ## http://redsymbol.net/articles/unofficial-bash-strict-mode/ 
 ## explains why we need above lines
 

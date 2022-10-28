@@ -75,6 +75,12 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 %.pdf: %.ly Makefile
 > ${LILYPOND} $<
 
+%.pdf: %.qmd Makefile
+> quarto render --to pdf $<
+
+%.html: %.qmd Makefile
+> quarto render --to html $<
+
 %.pdf: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
 
