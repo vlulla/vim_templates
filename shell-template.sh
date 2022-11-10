@@ -22,3 +22,4 @@ trap cleanup EXIT QUIT INT
 ## cleanup the temporary directory. Or you can do pushd...
 ## pushd ${tmpdir}
 
+exit 0

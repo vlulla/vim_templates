@@ -17,11 +17,14 @@ import matplotlib.pyplot as plt
 import hypothesis as hy, hypothesis.strategies as st
 ## import geopandas as gp, hypothesis as hp
 
+T = typing.TypeVar("T")
+P = typing.ParamSpec("P")
+
 logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
-def log(func):
+def log(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
         signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
         logger = logging.getLogger()
         logger.debug(f"function {func.__name__} called ==> {func.__name__}({signature})")
@@ -35,22 +38,23 @@ def log(func):
 
 
 @log
-def f1(**kwargs):
+def f1(**kwargs: typing.Dict[typing.Any,typing.Any]) -> typing.Any:
     print("key\tvalue")
     print("---\t-----")
     for k,v in kwargs.items():
         print(f"{k}",f"{v}",sep="\t")
 
+Num = typing.TypeVar('Num', int, float, complex)
 @log
-def sum(a:int | float | complex, b:int | float | complex) -> int | float | complex: return a+b
+def sum(a:Num, b:Num) -> Num: return a+b
 
 @log
-def prod(a:int | float | complex, b:int | float | complex) -> int | float | complex: return a*b
+def prod(a:Num, b:Num) -> Num: return a*b
 
 @log
 @hy.settings(max_examples=500, verbosity=hy.Verbosity.verbose)
 @hy.given(a=st.one_of(st.integers(), st.floats()), b=st.one_of(st.integers(), st.floats()))
-def test_sum(a: int | float | complex, b:int | float | complex) -> None:
+def test_sum(a: int|float, b:int|float) -> None:
   """ This ought to fail for quite a few cases!!!
 
       Included here just to demonstrate how to use hypothesis for PBT.
