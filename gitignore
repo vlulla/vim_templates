@@ -65,3 +65,4 @@ target/
 
 # dask
 dask-worker-space/
+.hypothesis
