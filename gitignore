@@ -66,6 +66,7 @@ target/
 # dask
 dask-worker-space/
 .hypothesis
+.env*
 
 # Usually NOTES-VL that I create in directories.
 NOTES-VL
