@@ -15,3 +15,5 @@ autocmd BufNewFile *.go 0r <your folder path>/vim_templates/gotemplate.go
 autocmd BufNewFile *.py 0r <your folder path>/vim_templates/pythontemplate.py
 autocmd BufNewFile build.sbt 0r <your folder path>/vim_templates/build.sbt
 ```
+
+Many of the custom entries from .gitignore can go into the `$HOME/.config/git/ignore` which will work to ignore files consistently in all the projects.
