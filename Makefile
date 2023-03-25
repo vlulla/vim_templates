@@ -20,8 +20,8 @@ LILYPOND=lilypond
 
 CC ?= gcc
 CXX ?= g++
-CFLAGS := $(if $(I),,-Werror) -Wextra -Wall
-CPPFLAGS := $(if $(I),,-Werror) -Wextra -Wall
+CFLAGS := $(if $(I),-Werror,) -Wextra -Wall
+CPPFLAGS := $(if $(I),-Werror,) -Wextra -Wall
 
 
 all: $(patsubst %.md,%.pdf,$(wildcard *.md))
