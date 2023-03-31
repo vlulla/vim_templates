@@ -23,26 +23,26 @@ P = typing.ParamSpec("P")
 logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
 def log(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
-    @functools.wraps(func)
-    def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
-        signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
-        logger = logging.getLogger()
-        logger.debug(f"function {func.__name__} called ==> {func.__name__}({signature})")
-        try:
-            result = func(*args, **kwargs)
-            return result
-        except Exception as e:
-            logger.exception(f"Exception raised in {func.__name__}. exception: {e!s}")
-            raise e
-    return wrapper
+  @functools.wraps(func)
+  def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+    signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
+    logger = logging.getLogger()
+    logger.debug(f"function {func.__name__} called ==> {func.__name__}({signature})")
+    try:
+      result = func(*args, **kwargs)
+      return result
+    except Exception as e:
+      logger.exception(f"Exception raised in {func.__name__}. exception: {e!s}")
+      raise e
+  return wrapper
 
 
 @log
 def f1(**kwargs: typing.Dict[typing.Any,typing.Any]) -> typing.Any:
-    print("key\tvalue")
-    print("---\t-----")
-    for k,v in kwargs.items():
-        print(f"{k}",f"{v}",sep="\t")
+  print("key\tvalue")
+  print("---\t-----")
+  for k,v in kwargs.items():
+    print(f"{k}",f"{v}",sep="\t")
 
 Num = typing.TypeVar('Num', int, float, complex)
 @log
@@ -65,14 +65,14 @@ def test_sum(a: int|float, b:int|float) -> None:
 
 @log
 def main():
-    logging.info("In main")
-    print("hello world!")
-    f1(fname="vijay",lname="lulla",addr="mythical city",salary=5.2)
-    f1(x=[1,2,3,4,5],y=[1,2,3,4,5])
-    million, scaler = 1_000_000, 0.89
-    print(f"${million:_d} US = \u20ac{million*scaler:4_.2f}")
-    print(f"sum(2, 18.25) is {sum(2,18.5)} and prod(2, 18.5) is {prod(2,18.5)}")
+  logging.info("In main")
+  print("hello world!")
+  f1(fname="vijay",lname="lulla",addr="mythical city",salary=5.2)
+  f1(x=[1,2,3,4,5],y=[1,2,3,4,5])
+  million, scaler = 1_000_000, 0.89
+  print(f"${million:_d} US = \u20ac{million*scaler:4_.2f}")
+  print(f"sum(2, 18.25) is {sum(2,18.5)} and prod(2, 18.5) is {prod(2,18.5)}")
 
 if __name__ == "__main__":
-    main()
+  main()
 
