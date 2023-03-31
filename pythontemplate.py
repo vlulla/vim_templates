@@ -10,7 +10,7 @@
 ##
 ##       Especially, check out the function test_sum()!! And, check out the log that is generated!
 
-import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib
+import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect
 import numpy as np, pandas as pd ## , xarray as xr, zarr
 import dask.dataframe as dd, dask.array as da, dask.bag as db ## for distributed computing!
 import matplotlib.pyplot as plt
@@ -27,7 +27,7 @@ def log(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
   def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
     signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
     logger = logging.getLogger()
-    logger.debug(f"function {func.__name__} called ==> {func.__name__}({signature})")
+    logger.debug(f"function {func.__name__}{inspect.signature(func)} called ==> {func.__name__}({signature})")
     try:
       result = func(*args, **kwargs)
       return result
