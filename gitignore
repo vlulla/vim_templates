@@ -74,3 +74,6 @@ NOTES-VL
 .RData
 .Rhistory
 dask-worker-space
+*.csv
+*.parquet
+*.rds
