@@ -17,6 +17,8 @@ import matplotlib.pyplot as plt
 import hypothesis as hy, hypothesis.strategies as st
 ## import geopandas as gp, hypothesis as hp
 
+import pdb
+
 T = typing.TypeVar("T")
 P = typing.ParamSpec("P")
 
@@ -70,6 +72,7 @@ def main():
   f1(fname="vijay",lname="lulla",addr="mythical city",salary=5.2)
   f1(x=[1,2,3,4,5],y=[1,2,3,4,5])
   million, scaler = 1_000_000, 0.89
+  pdb.set_trace()
   print(f"${million:_d} US = \u20ac{million*scaler:4_.2f}")
   print(f"sum(2, 18.25) is {sum(2,18.5)} and prod(2, 18.5) is {prod(2,18.5)}")
 
