@@ -77,3 +77,7 @@ dask-worker-space
 *.csv
 *.parquet
 *.rds
+
+# direnv related
+.direnv
+.envrc
