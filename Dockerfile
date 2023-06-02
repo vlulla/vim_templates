@@ -11,7 +11,7 @@ RUN <<EOT
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -qq --yes
 
-apt-get install --yes --auto-remove --no-install-recommends build-essential tini coreutils findutils git tree jq git htop vim ripgrep curl gnupg strace psmisc iputils-ping tcpdump traceroute procps
+apt-get install --yes --auto-remove --no-install-recommends build-essential ca-certificates tini coreutils findutils git tree jq git htop vim ripgrep curl gnupg strace psmisc iputils-ping tcpdump traceroute procps
 
 apt-get autoclean && rm -rf /var/lib/apt/lists/*
 unset DEBIAN_FRONTEND
