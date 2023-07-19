@@ -43,10 +43,8 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 %.pdf: %.gv
 > sed -i -E -e 's/([0-9]{4})-([0-9]{2})-([0-9]{2})/\1.\2.\3/g' $<
 > dot -Tpdf -o $@ $<
-> ## xdg-open $@
 
 %.svg: %.dot
-> ## sed -i -E -e 's/([0-9]{4})-([0-9]{2})-([0-9]{2})/\1.\2.\3/g' $<
 > dot -Tsvg -o $@ $<
 
 %.svg: %.gv
@@ -72,17 +70,6 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 %.odt: %.md Makefile
 > pandoc ${PANDOC_OPTS} --to=odt --output=$@ $<
 
-## %.tex: %.md Makefile
-## > pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
-##
-## %.pdf: %.tex Makefile
-## > sed -i -e 's@\\linethickness@2 pt@g' $<
-## > # latexmk -silent -rules -pdf -xelatex $<
-## > # latexmk -silent -pdflua $<  # Does not work with microtypeoptions
-## > latexmk -silent -pdf $<
-## > latexmk -silent -pdf -c $<
-## > # open $@
-
 %.pdf: %.ly Makefile
 > ${LILYPOND} $<
 
@@ -106,9 +93,6 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 
 %.html: %.md Makefile
 > pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
-> # sed -i -e 's@<table>@<table border="1" style="border-collapse: collapse;">@g' $@
-> # sed -i -e 's@<span class="math inline">\\(\\Rightarrow\\)</span>@\&rarr;@g' $@
-> # open $@
 
 %.html: %.tex Makefile
 > pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<

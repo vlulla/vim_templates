@@ -1,21 +1,11 @@
 # vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=2:softtabstop=2:textwidth=160:noautoindent:nocindent:nosmartindent
 ##
-## Author: Vijay Lulla
-## Date:
-##
-## NOTE: To enable running assert statements ensure that PYTHONOPTIMIZE is not set.
-##       It is best to start the script like so:
-##
-##       ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py>
-##
-##       Especially, check out the function test_sum()!! And, check out the log that is generated!
+## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py>
 
 import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect
-import numpy as np, pandas as pd ## , xarray as xr, zarr
-import dask.dataframe as dd, dask.array as da, dask.bag as db ## for distributed computing!
+import numpy as np, pandas as pd
 import matplotlib.pyplot as plt
 import hypothesis as hy, hypothesis.strategies as st
-## import geopandas as gp, hypothesis as hp
 
 if __debug__: import pdb
 

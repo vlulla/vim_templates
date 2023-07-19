@@ -1,10 +1,3 @@
-##
-##
-## Author: Vijay Lulla
-## Date:
-##
-##
-
 Sys.time() ## Tremendous help in .Rout files!
 
 library(stringi)
