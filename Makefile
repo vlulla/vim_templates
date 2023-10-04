@@ -13,7 +13,7 @@ MAKEFLAGS += --no-builtin-rules
 .PHONY: all clean message cleanall
 .DEFAULT_GOAL: all
 
-R_OPTS = --no-restore --no-init-file --no-site-file
+R_OPTS = --quiet --no-restore --no-init-file --no-site-file
 PANDOC_OPTS=--from=markdown --standalone --highlight-style=tango --wrap=none --citeproc --toc --toc-depth=2
 PANDOC_HTML_OPTS=--to=html5 --number-sections --mathjax --email-obfuscation=references
 LILYPOND=lilypond
@@ -86,7 +86,7 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
 
 %.Rout: %.R Makefile
-> R CMD BATCH --no-restore $<
+> R CMD BATCH ${R_OPTS} $<
 
 %.html: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"

@@ -1,8 +1,8 @@
-# vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=2:softtabstop=2:textwidth=160:noautoindent:nocindent:nosmartindent
+# vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=2:softtabstop=2:textwidth=120:noautoindent:nocindent:nosmartindent
 ##
 ## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py>
 
-import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect
+import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc
 import numpy as np, pandas as pd
 import matplotlib.pyplot as plt
 import hypothesis as hy, hypothesis.strategies as st
