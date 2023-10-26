@@ -14,6 +14,12 @@ P = typing.ParamSpec("P")
 
 logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
+def grid(axis="both"):
+  "Show the grid...kinda like graph paper"
+  plt.minorticks_on()
+  plt.grid(which="major", linestyle="-", alpha=0.75, axis=axis)
+  plt.grid(which="minor", linestyle=":", alpha=0.5, axis=axis)
+
 def log(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
   @functools.wraps(func)
   def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
