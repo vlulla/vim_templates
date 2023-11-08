@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x ## print expanded command that will be executed. Useful for understanding what the _actual command_ was! Comment when you are done!
 set -euo pipefail
 ## traditionalIFS="${IFS}"
 IFS=$'\n\t'
