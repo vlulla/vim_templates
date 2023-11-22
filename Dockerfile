@@ -4,7 +4,7 @@ FROM debian:${VERSION}
 ARG VERSION
 LABEL maintainer "Vijay Lulla <vijaylulla@gmail.com>"
 
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "-eux", "-o", "pipefail", "-c"]
 
 ## Useful tools for all of my exploratory work.
 RUN <<EOT
