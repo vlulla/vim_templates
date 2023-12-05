@@ -13,10 +13,7 @@ if [[ "${TRACE-0}" == "1" ]]; then set -o xtrace; fi
 ## you can just do IFS="${traditionalIFS}" and then run your program.
 
 tmpdir=$(mktemp -d /tmp/tmp.VL."$(basename "$0")".XXXXXXXXXX)
-cleanup() {
-  rm -rf "${tmpdir}"
-}
-trap cleanup EXIT QUIT INT
+trap "rm -rf ${tmpdir}" EXIT QUIT INT HUP PIPE TERM
 pushd ${tmpdir}
 
 
