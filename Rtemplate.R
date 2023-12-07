@@ -4,6 +4,7 @@ library(stringi)
 library(RSQLite)
 library(data.table)
 library(fastmatch); match <- fastmatch::fmatch # faster match!
+library(collapse)
 
 library(rgdal)
 library(sp)
