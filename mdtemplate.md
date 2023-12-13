@@ -4,7 +4,7 @@ subtitle: "(using pandoc markdown)"
 author:
 - "[Vijay Lulla](https://vlulla.github.io/)"
 - Author Two
-date: "Date here"
+date: "«Date goes here»"
 keywords:
 - keyword 1
 - keyword 2
