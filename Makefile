@@ -23,9 +23,8 @@ CXX ?= g++
 CFLAGS := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
 CPPFLAGS := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
 
-
-all: $(patsubst %.md,%.pdf,$(wildcard *.md))
-
+md_files = $(wildcard *.md)
+all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 
 % %.o: %.c Makefile
 > $(CC) $(CFLAGS) -o $@ $<
@@ -56,19 +55,19 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 
 ## For debugging
 %.native: %.md
-> pandoc ${PANDOC_OPTS} --to=native --output=$@ $<
+> docker run --rm --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.0 ${PANDOC_OPTS} --to=native --output=$@ $<
 
 %.pdf: %.md Makefile
-> pandoc ${PANDOC_OPTS} --to=latex --output=$@ $<
+> docker run --rm --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.0 ${PANDOC_OPTS} --to=latex --output=$@ $<
 
 %.html: %.md Makefile
-> pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
+> docker run --rm --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.0 ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
 
 %.docx: %.md Makefile
-> pandoc ${PANDOC_OPTS} --to=docx --output=$@ $<
+> docker run --rm --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.0 ${PANDOC_OPTS} --to=docx --output=$@ $<
 
 %.odt: %.md Makefile
-> pandoc ${PANDOC_OPTS} --to=odt --output=$@ $<
+> docker run --rm --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.0 ${PANDOC_OPTS} --to=odt --output=$@ $<
 
 %.pdf: %.ly Makefile
 > ${LILYPOND} $<
@@ -91,15 +90,12 @@ all: $(patsubst %.md,%.pdf,$(wildcard *.md))
 %.html: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 
-%.html: %.md Makefile
-> pandoc ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
-
 %.html: %.tex Makefile
-> pandoc $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<
+> docker run --rm --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.0 $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<
 
 clean:
 > @echo "Do cleaning here"
-> rm -rf $(patsubst %.md,%.pdf,$(wildcard *.md))
+> rm -rf $(md_files:.md=.pdf) $(md_files:.md=.html)
 
 cleanall: clean
 > @echo "Do some specialized cleaning here..."
