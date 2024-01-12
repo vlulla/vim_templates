@@ -2,7 +2,7 @@
 ##
 ## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py>
 
-import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc
+import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest
 import numpy as np, pandas as pd
 import matplotlib.pyplot as plt
 import hypothesis as hy, hypothesis.strategies as st
@@ -60,6 +60,11 @@ def test_sum(a: int|float, b:int|float) -> None:
   assert a + b == sum(a,b)
   assert sum(a,b) >= a
   assert sum(a,b) >= b
+
+@log
+@pytest.mark.parametrize(("test_input","expected"),[("3+5",8),("2+4",6),("6*9",42)])
+def test_eval(test_input, expected): ## the args have to match args listed in the pytest.mark.parametrize tuple!
+  assert eval(test_input) == expected
 
 @log
 def main():
