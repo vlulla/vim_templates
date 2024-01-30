@@ -18,9 +18,9 @@ PANDOC_OPTS=--from=markdown --standalone --highlight-style=tango --wrap=none --c
 PANDOC_HTML_OPTS=--to=html5 --number-sections --mathjax --email-obfuscation=references
 LILYPOND=lilypond
 
-CC ?= gcc
-CXX ?= g++
-CFLAGS := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
+CC  := $(shell command -v clang   || command -v gcc 2>/dev/null)
+CXX := $(shell command -v clang++ || command -v g++ 2>/dev/null)
+CFLAGS   := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
 CPPFLAGS := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
 
 md_files = $(wildcard *.md)
