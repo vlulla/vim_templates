@@ -10,7 +10,7 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-.PHONY: all clean message cleanall
+.PHONY: all clean message cleanall pyshell
 .DEFAULT_GOAL: all
 
 R_OPTS = --quiet --no-restore --no-init-file --no-site-file
@@ -25,6 +25,10 @@ CPPFLAGS := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=unde
 
 md_files = $(wildcard *.md)
 all: $(md_files:.md=.pdf) $(md_files:.md=.html)
+
+## Modify the env to your choice...
+pyshell:
+> micromamba run --name base python3 -I -s -E -OO
 
 % %.o: %.c Makefile
 > $(CC) $(CFLAGS) -o $@ $<
