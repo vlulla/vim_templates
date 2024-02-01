@@ -1,6 +1,7 @@
 # vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=2:softtabstop=2:textwidth=120:noautoindent:nocindent:nosmartindent
 ##
-## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py>
+## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py> ## when you are developing
+## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
 
 import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest
 import numpy as np, pandas as pd
