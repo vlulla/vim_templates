@@ -12,11 +12,9 @@ abstract: |
   Put the multline abstract here!
 
   It can contain multiple paragraphs too.
-documentclass: scrartcl
 fontfamilyoptions:
 - osf
 - p
-fontsize: 11pt
 geometry:
 - margin=1in
 - heightrounded
@@ -39,6 +37,9 @@ bibliography: mybibliography.bib
 link-citations: true
 csl: apa.csl
 ---
+``` {=html}
+<style>body{min-width: 90% !important;}</style>
+```
 
 This is a brief introduction to markdown.
 Specifically, pandoc markdown!
