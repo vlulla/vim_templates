@@ -104,3 +104,8 @@ clean:
 cleanall: clean
 > @echo "Do some specialized cleaning here..."
 > rm -rf *.Rout .RData
+
+## to debug variables define in Makefile...
+## bash $ make -n vars 2>/dev/null ## suppress --warn-undefined-variables flag set earlier...
+## from https://stackoverflow.com/a/7119460
+vars:; $(foreach v,$(.VARIABLES),$(info $(v) = $($(v)) ))
