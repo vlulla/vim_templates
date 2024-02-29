@@ -1,3 +1,6 @@
+#!/usr/bin/env -S Rscript --vanilla
+# If you want to run this script from cli then chmod +x it!
+
 Sys.time() ## Tremendous help in .Rout files!
 
 library(stringi)
