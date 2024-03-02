@@ -103,7 +103,7 @@ clean:
 
 cleanall: clean
 > @echo "Do some specialized cleaning here..."
-> rm -rf *.Rout .RData
+> rm -rf *.Rout .RData __pycache__
 
 ## to debug variables define in Makefile...
 ## bash $ make -n vars 2>/dev/null ## suppress --warn-undefined-variables flag set earlier...

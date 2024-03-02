@@ -53,7 +53,7 @@ def prod(a:Num, b:Num) -> Num: return a*b
 @log
 @hy.settings(max_examples=500, verbosity=hy.Verbosity.verbose)
 @hy.given(a=st.one_of(st.integers(), st.floats()), b=st.one_of(st.integers(), st.floats()))
-def test_sum(a: int|float, b:int|float) -> None:
+def test_sum[T: int|float](a:T, b:T) -> None:
   """ This ought to fail for quite a few cases!!!
 
       Included here just to demonstrate how to use hypothesis for PBT.
