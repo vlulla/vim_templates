@@ -76,7 +76,7 @@ def main():
   million, scaler = 1_000_000, 0.89
   if __debug__: pdb.set_trace()
   print(f"${million:_d} US = \u20ac{million*scaler:4_.2f}")
-  print(f"sum(2, 18.25) is {sum(2,18.5)} and prod(2, 18.5) is {prod(2,18.5)}")
+  print(f"{sum(2,18.5)=}\n{prod(2,18.5)=}")
 
 if __name__ == "__main__":
   main()
