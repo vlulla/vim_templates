@@ -78,6 +78,11 @@ def main():
   print(f"${million:_d} US = \u20ac{million*scaler:4_.2f}")
   print(f"{sum(2,18.5)=}\n{prod(2,18.5)=}")
 
+  today = datetime.datetime.now()
+  print(f"{today:%B %d, %Y}\n"
+        f"{today=:%B %d, %Y}\n"
+        f"{ today = :%B %d, %Y}" ) ## NOTE: whitespace preserved!
+
 if __name__ == "__main__":
   main()
 
