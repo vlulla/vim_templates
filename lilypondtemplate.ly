@@ -1,9 +1,9 @@
 \version "2.24.1"
 \header {
-  title="<<<TITLE HERE>>>"
-  piece="<<<PIECE HERE>>>"
-  arranger = "<<<ARRANGER>>>"
-  enteredby = "Vijay Lulla (<<<Today's date>>>)"
+  title="«TITLE HERE»"
+  piece="«PIECE HERE»"
+  arranger = "«ARRANGER»"
+  enteredby = "Vijay Lulla («Today's date»)"
 }
 
 \layout {
@@ -19,7 +19,7 @@ voiceconsts = {
   \key c \major
   \numericTimeSignature
   \compressEmptyMeasures
-  \tempo "<<<TEMPO HERE>>>" 4 = 60
+  \tempo "«TEMPO HERE»" 4 = 60
 }
 
 showLastLength = R1*8 %% last few measures %% Comment to typeset whole score!

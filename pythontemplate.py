@@ -41,7 +41,7 @@ def f1(**kwargs: typing.Dict[typing.Any,typing.Any]) -> typing.Any:
   print("key\tvalue")
   print("---\t-----")
   for k,v in kwargs.items():
-    print(f"{k}",f"{v}",sep="\t")
+    print(f"{k=}",f"{v=}",sep="\t")
 
 Num = typing.TypeVar('Num', int, float, complex)
 @log
