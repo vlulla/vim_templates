@@ -2,6 +2,7 @@
 ##
 ## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py> ## when you are developing
 ## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
+## ~ $ python3 -I -E -OO <your-script.py> ## even more optimization... removes docstrings!
 
 import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest
 import numpy as np, pandas as pd
@@ -63,7 +64,7 @@ def test_sum[T: int|float](a:T, b:T) -> None:
   assert sum(a,b) >= b
 
 @log
-@pytest.mark.parametrize(("test_input","expected"),[("3+5",8),("2+4",6),("6*9",42)])
+@pytest.mark.parametrize(("test_input","expected"),[("3+5",8),("2+4",6),pytest.param("6*9",42,marks=pytest.mark.xfail)])
 def test_eval(test_input, expected): ## the args have to match args listed in the pytest.mark.parametrize tuple!
   assert eval(test_input) == expected
 
