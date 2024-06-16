@@ -1,3 +1,4 @@
+/// 2>/dev/null ; gorun "$0" "$@" ; exit $?
 package main
 
 import (
