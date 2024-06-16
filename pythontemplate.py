@@ -6,7 +6,7 @@
 
 import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest
 import numpy as np, pandas as pd, pyarrow as pa, duckdb as ddb
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt,seaborn as sns
 import hypothesis as hy, hypothesis.strategies as st
 ddb.execute("SET GLOBAL pandas_analyze_sample = 100_000")
 
