@@ -8,6 +8,7 @@ library(RSQLite)
 library(data.table)
 library(fastmatch); match <- fastmatch::fmatch # faster match!
 library(collapse)
+library("duckdb")
 
 library(terra) ## library(rgdal)
 library(sp)
