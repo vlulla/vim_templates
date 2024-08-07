@@ -29,7 +29,7 @@ all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 update-repo:
 > git stash push --include-untracked
 > git pull --ff-only
-> git stash pop || exit '...' ## no stash entry generates a non-zero exit indicating error :-(
+> git stash pop || exit 0 ## '...' ## no stash entry generates a non-zero exit indicating error :-(
 ## Modify the env to your choice...
 pyshell:
 > micromamba run --name base python3 -I -s -E -OO
