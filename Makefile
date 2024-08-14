@@ -87,16 +87,17 @@ pyshell:
 > quarto render $< --to html --toc
 
 %.pdf: %.Rmd Makefile
-> R ${R_OPTS} -e "rmarkdown::render('$<', 'pdf_document')"
+> R ${R_OPTS} -e "knitr::knit2pdf('$<',output='$@')"
 
+%.html: %.Rmd Makefile
+> R ${R_OPTS} -e "knitr::knit2html('$<',output='$@')"
+>
 %.docx: %.Rmd Makefile
 > R ${R_OPTS} -e "rmarkdown::render('$<', 'word_document')"
 
 %.Rout: %.R Makefile
 > R CMD BATCH ${R_OPTS} $<
 
-%.html: %.Rmd Makefile
-> R ${R_OPTS} -e "rmarkdown::render('$<', 'html_document')"
 
 %.R: %.Rmd Makefile
 > R ${R_OPTS} -e "knitr::purl(input='$<',output='$@',documentation=0)"
