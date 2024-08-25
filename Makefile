@@ -63,19 +63,19 @@ pyshell:
 
 ## For debugging
 %.native: %.md
-> docker run --rm --platform linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.1 ${PANDOC_OPTS} --to=native --output=$@ $<
+> docker run --rm --platform=linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc-komascript ${PANDOC_OPTS} --to=native --output=$@ $<
 
 %.pdf: %.md Makefile
-> docker run --rm --platform linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.1 ${PANDOC_OPTS} --to=latex --output=$@ $<
+> docker run --rm --platform=linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc-komascript ${PANDOC_OPTS} --to=latex --output=$@ $<
 
 %.html: %.md Makefile
-> docker run --rm --platform linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.1 ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
+> docker run --rm --platform=linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc-komascript  ${PANDOC_OPTS} ${PANDOC_HTML_OPTS} --output=$@ $<
 
 %.docx: %.md Makefile
-> docker run --rm --platform linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.1 ${PANDOC_OPTS} --to=docx --output=$@ $<
+> docker run --rm --platform=linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc-komascript ${PANDOC_OPTS} --to=docx --output=$@ $<
 
 %.odt: %.md Makefile
-> docker run --rm --platform linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.1 ${PANDOC_OPTS} --to=odt --output=$@ $<
+> docker run --rm --platform=linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc-komascript ${PANDOC_OPTS} --to=odt --output=$@ $<
 
 %.pdf: %.ly Makefile
 > ${LILYPOND} $<
