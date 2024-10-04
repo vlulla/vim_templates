@@ -27,7 +27,7 @@ md_files = $(wildcard *.md)
 all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 
 update-repo:
-> git stash push
+> git stash push --include-untracked
 > git pull --ff-only
 > git stash apply || exit 0 ## '...' ## no stash entry generates a non-zero exit indicating error :-(
 
