@@ -10,7 +10,7 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-.PHONY: all clean message cleanall pyshell update-repo
+.PHONY: all clean message cleanall pyshell update-repo stash-clear
 .DEFAULT_GOAL: all
 
 R_OPTS = --quiet --no-restore --no-init-file --no-site-file
@@ -27,9 +27,13 @@ md_files = $(wildcard *.md)
 all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 
 update-repo:
-> git stash push --include-untracked
+> git stash push
 > git pull --ff-only
-> git stash pop || exit 0 ## '...' ## no stash entry generates a non-zero exit indicating error :-(
+> git stash apply || exit 0 ## '...' ## no stash entry generates a non-zero exit indicating error :-(
+
+stash-clear:
+> git reflog expire --expire=60.days refs/stash || exit 0 ## since I do not use git stash this might raise some errors...
+
 ## Modify the env to your choice...
 pyshell:
 > micromamba run --name base python3 -I -s -E -OO
