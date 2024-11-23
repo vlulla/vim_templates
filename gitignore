@@ -80,6 +80,11 @@ dask-worker-space
 *.rds
 ipython_log*.py
 
+## duckdb related...database and temporary files.
+*.wal
+*.duckdb*
+*.tmp/
+
 # direnv related
 .direnv
 .envrc
