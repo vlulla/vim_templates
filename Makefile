@@ -31,8 +31,9 @@ update-repo:
 > git pull --ff-only
 > git stash apply || exit 0 ## '...' ## no stash entry generates a non-zero exit indicating error :-(
 
+## https://jwiegley.github.io/git-from-the-bottom-up/4-Stashing-and-the-reflog.html is where i got this idea!
 stash-clear:
-> git reflog expire --expire=60.days refs/stash || exit 0 ## since I do not use git stash this might raise some errors...
+> git reflog expire --expire=60.days refs/stash || exit 0 ## since I do not use git stash _consistently_ this might raise some errors...
 
 ## Modify the env to your choice...
 pyshell:
