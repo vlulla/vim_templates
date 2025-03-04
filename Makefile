@@ -21,7 +21,7 @@ LILYPOND=lilypond
 CC  := $(shell command -v clang   || command -v gcc 2>/dev/null)
 CXX := $(shell command -v clang++ || command -v g++ 2>/dev/null)
 CFLAGS   := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
-CPPFLAGS := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
+CPPFLAGS := $(if $(I),-Werror,) -std=c++11 -Wextra -Wall -fsanitize=address -fsanitize=undefined
 
 md_files = $(wildcard *.md)
 all: $(md_files:.md=.pdf) $(md_files:.md=.html)
