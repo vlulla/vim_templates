@@ -39,6 +39,10 @@ stash-clear:
 pyshell:
 > micromamba run --name base python3 -I -s -E -OO
 
+%: %.go Makefile
+# > go build -x $<
+> go build $<
+
 % %.o: %.c Makefile
 > $(CC) $(CFLAGS) -o $@ $<
 
