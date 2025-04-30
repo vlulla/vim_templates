@@ -15,7 +15,7 @@ if __debug__: import pdb
 T = typing.TypeVar("T")
 P = typing.ParamSpec("P")
 
-logging.basicConfig(filename=f"log-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
+logging.basicConfig(filename=f"{__file__}-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
 def grid(axis="both"):
   "Show the grid...kinda like graph paper"
