@@ -4,7 +4,7 @@
 ## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
 ## ~ $ python3 -I -E -OO <your-script.py> ## even more optimization... removes docstrings!
 
-import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest
+import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest,statistics as stats
 ## import numpy as np, pandas as pd, pyarrow as pa, duckdb as ddb, polars as pl
 ## import matplotlib.pyplot as plt,seaborn as sns
 import hypothesis as hy, hypothesis.strategies as st
@@ -84,6 +84,11 @@ def main():
   print(f"{today:%B %d, %Y}\n"
         f"{today=:%B %d, %Y}\n"
         f"{ today = :%B %d, %Y}" ) ## NOTE: whitespace preserved!
+
+  print(stats.quantiles(range(1,100),n=10))
+  year, films_totals = [1971,1975,1979,1982,1983],[1,2,3,4,5]
+  slope, intercept = stats.linear_regression(year,films_totals)
+  print(f"{round(slope*2019 + intercept)}")
 
 if __name__ == "__main__":
   main()
