@@ -23,6 +23,12 @@ CXX := $(shell command -v clang++ || command -v g++ 2>/dev/null)
 CFLAGS   := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
 CPPFLAGS := $(if $(I),-Werror,) -std=c++11 -Wextra -Wall -fsanitize=address -fsanitize=undefined
 
+# Fortran related flags
+# compile
+FCFLAGS = -g -wextra -fimplicit-none -fdefault-real-8 -fbacktrace -fno-align-commons -fbounds-check -std=legacy -fopenmp
+# link
+FLFLAGS =
+
 md_files = $(wildcard *.md)
 all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 
@@ -40,7 +46,7 @@ pyshell:
 > micromamba run --name base python3 -I -s -E -OO
 
 %: %.f90 Makefile
-> gfortran -o $@ $<
+> gfortran $(FCFLAGS) -o $@ $<
 
 %: %.go Makefile
 # > go build -x $<
