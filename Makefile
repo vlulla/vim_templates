@@ -39,6 +39,9 @@ stash-clear:
 pyshell:
 > micromamba run --name base python3 -I -s -E -OO
 
+%: %.f90 Makefile
+> gfortran -o $@ $<
+
 %: %.go Makefile
 # > go build -x $<
 > go build $<
