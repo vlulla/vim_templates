@@ -25,7 +25,7 @@ CPPFLAGS := $(if $(I),-Werror,) -std=c++11 -Wextra -Wall -fsanitize=address -fsa
 
 # Fortran related flags
 # compile
-FCFLAGS = -g -wextra -fimplicit-none -fdefault-real-8 -fbacktrace -fno-align-commons -fbounds-check -std=legacy -fopenmp
+FCFLAGS = -g -Wextra -fimplicit-none -fdefault-real-8 -fbacktrace -fno-align-commons -fbounds-check -std=legacy -fopenmp
 # link
 FLFLAGS =
 
