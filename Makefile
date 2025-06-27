@@ -42,8 +42,12 @@ stash-clear:
 > git reflog expire --expire=60.days refs/stash || exit 0 ## since I do not use git stash _consistently_ this might raise some errors...
 
 ## Modify the env to your choice...
+PYENV = base
 pyshell:
-> micromamba run --name base python3 -I -s -E -OO
+> micromamba run --name $(PYENV) python3 -I -s -E -OO
+
+listpyenv:
+> micromamba env list
 
 %: %.f90 Makefile
 > gfortran $(FCFLAGS) -o $@ $<
