@@ -21,7 +21,7 @@ LILYPOND=lilypond
 CC  := $(shell command -v clang   || command -v gcc 2>/dev/null)
 CXX := $(shell command -v clang++ || command -v g++ 2>/dev/null)
 CFLAGS   := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
-CPPFLAGS := $(if $(I),-Werror,) -std=c++11 -Wextra -Wall -fsanitize=address -fsanitize=undefined
+CPPFLAGS := $(if $(I),-Werror,) -std=c++11 -Wextra -Wall -fsanitize=address -fsanitize=undefined -std=c++11
 
 # Fortran related flags
 # compile
@@ -129,7 +129,7 @@ listpyenv:
 
 clean:
 > @echo "Do cleaning here"
-> rm -rf $(md_files:.md=.pdf) $(md_files:.md=.html)
+> rm -rf $(md_files:.md=.pdf) $(md_files:.md=.html) $(patsubst %.c,%,$(wildcard *.c)) $(patsubst %.cc,%,$(wildcard *.cc)) $(patsubst %.cpp,%,$(wildcard *.cpp))
 
 cleanall: clean
 > @echo "Do some specialized cleaning here..."
