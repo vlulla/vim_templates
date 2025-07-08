@@ -44,15 +44,15 @@ def timefunc(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
       def tst():
         time.sleep(5)
         pass
-  >>> logging.getLogger().setLevel(logging.DEBUG)
+  >>> logging.getLogger("timefunc").setLevel(logging.DEBUG)
   >>> tst()
-  DEBUG:root:tst took: 5.005141952 seconds
+  DEBUG:timefunc:tst took: 5.005141952 seconds
 
   NOTE: If logging does not show up (usually the case in ipython), call `logging.basicConfig()` in the repl to initialize logging.
   """
   @functools.wraps(func)
   def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
-    logger = logging.getLogger()
+    logger = logging.getLogger("timefunc")
     signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
     try:
       start_time = time.monotonic_ns()
