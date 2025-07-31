@@ -37,6 +37,33 @@ def log(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
             raise e
     return wrapper
 
+def timefunc(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
+    """
+    Log how long it takes to run the function.
+    >>> @timefunc
+        def tst():
+            time.sleep(5)
+            pass
+    >>> logging.getLogger("timefunc").setLevel(logging.DEBUG)
+    >>> tst()
+    DEBUG:timefunc:tst took: 5.005141952 seconds
+
+    NOTE: If logging does not show up (usually the case in ipython), call `logging.basicConfig()` in the repl to initialize logging.
+    """
+    @functools.wraps(func)
+    def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+        logger = logging.getLogger("timefunc")
+        signature = ", ".join([f"{a!r}" for a in args] + [f"{k}={v!r}" for k,v in kwargs.items()])
+        try:
+            start_time = time.monotonic_ns()
+            result = func(*args, **kwargs)
+            logger.debug(f"{func.__name__}({signature}) took: {(time.monotonic_ns() - start_time)/1_000_000_000} seconds") ## TODO (vijay): will this be logged if exception is raised in a long running function?
+            return result
+        except Exception as e:
+            logger.exception(f"Exception raised in {func.__name__}({signature}). exception: {e!s}")
+            raise e
+    return wrapper
+
 
 @log
 def f1(**kwargs: typing.Dict[typing.Any,typing.Any]) -> typing.Any:
