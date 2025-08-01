@@ -4,7 +4,7 @@
 ## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
 ## ~ $ python3 -I -E -OO <your-script.py> ## even more optimization... removes docstrings!
 
-import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest,statistics as stats
+import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest,statistics as stats,time
 ## import numpy as np, pandas as pd, pyarrow as pa, duckdb as ddb, polars as pl
 ## import matplotlib.pyplot as plt,seaborn as sns
 import hypothesis as hy, hypothesis.strategies as st
@@ -17,8 +17,9 @@ P = typing.ParamSpec("P")
 
 logging.basicConfig(filename=f"{__file__}-{str(datetime.datetime.now().date())}.log", level=logging.DEBUG, encoding="utf-8", format="{asctime} - {levelname} - {message!r}", style="{",  datefmt="%Y.%m.%dT%H:%M:%S%z")
 
-def grid(axis="both"):
+def grid(axis:typing.Literal["both","x","y"]="both"):
     "Show the grid...kinda like graph paper"
+    import matplotlib.pyplot as plt
     plt.minorticks_on()
     plt.grid(which="major", linestyle="-", alpha=0.75, axis=axis)
     plt.grid(which="minor", linestyle=":", alpha=0.5, axis=axis)
@@ -66,7 +67,7 @@ def timefunc(func: typing.Callable[P,T]) -> typing.Callable[P,T]:
 
 
 @log
-def f1(**kwargs: typing.Dict[typing.Any,typing.Any]) -> typing.Any:
+def f1(**kwargs):
     print("key\tvalue")
     print("---\t-----")
     for k,v in kwargs.items():
