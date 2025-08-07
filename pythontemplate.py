@@ -4,10 +4,18 @@
 ## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
 ## ~ $ python3 -I -E -OO <your-script.py> ## even more optimization... removes docstrings!
 
-import re, os, sys, sqlite3, datetime, logging, typing, functools, pathlib, inspect, dataclasses as dc,pytest,statistics as stats,time
+import datetime
+import logging
+import typing
+import functools
+import inspect
+import pytest
+import statistics as stats
+import time
 ## import numpy as np, pandas as pd, pyarrow as pa, duckdb as ddb, polars as pl
 ## import matplotlib.pyplot as plt,seaborn as sns
-import hypothesis as hy, hypothesis.strategies as st
+import hypothesis as hy
+import hypothesis.strategies as st
 ## ddb.execute("SET GLOBAL pandas_analyze_sample = 100_000")
 
 if __debug__: import pdb
