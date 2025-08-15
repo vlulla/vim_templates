@@ -1,4 +1,10 @@
 # vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=4:softtabstop=4:textwidth=120:noautoindent:nocindent:nosmartindent
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#   "duckdb", "hypothesis", "matplotlib", "numpy", "pandas", "polars", "pyarrow", "pytest", "seaborn",
+# ]
+# ///
 ##
 ## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py> ## when you are developing
 ## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
