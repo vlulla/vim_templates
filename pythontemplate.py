@@ -9,6 +9,10 @@
 ## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py> ## when you are developing
 ## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
 ## ~ $ python3 -I -E -OO <your-script.py> ## even more optimization... removes docstrings!
+##
+## OR better yet...
+## ~ $ uv run <your-script.py> ## this will automatically install packages listed in the script block above. PEP-723
+## TODO (vijay): Figure out how to run interactive session with uv!
 
 import datetime
 import logging
