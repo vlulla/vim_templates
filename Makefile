@@ -20,8 +20,8 @@ LILYPOND=lilypond
 
 CC  := $(shell command -v clang   || command -v gcc 2>/dev/null)
 CXX := $(shell command -v clang++ || command -v g++ 2>/dev/null)
-CFLAGS   := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined
-CPPFLAGS := $(if $(I),-Werror,) -std=c++11 -Wextra -Wall -fsanitize=address -fsanitize=undefined -std=c++11
+CFLAGS   := $(if $(I),-Werror,) -Wextra -Wall -fsanitize=address -fsanitize=undefined -fuse-ld=lld
+CPPFLAGS := $(if $(I),-Werror,) -std=c++11 -Wextra -Wall -fsanitize=address -fsanitize=undefined -std=c++11 -fuse-ld=lld
 
 # Fortran related flags
 # compile
