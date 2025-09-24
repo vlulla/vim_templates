@@ -10,7 +10,6 @@ SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-.PHONY: all clean message cleanall pyshell update-repo stash-clear
 .DEFAULT_GOAL: all
 
 R_OPTS = --quiet --no-restore --no-init-file --no-site-file
@@ -29,23 +28,28 @@ FCFLAGS = -g -Wextra -fimplicit-none -fdefault-real-8 -fbacktrace -fno-align-com
 # link
 FLFLAGS =
 
+.PHONY: all
 md_files = $(wildcard *.md)
 all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 
+.PHONY: update-repo
 update-repo:
 > git stash push --include-untracked
 > git pull --ff-only
 > git stash apply || exit 0 ## '...' ## no stash entry generates a non-zero exit indicating error :-(
 
 ## https://jwiegley.github.io/git-from-the-bottom-up/4-Stashing-and-the-reflog.html is where i got this idea!
+.PHONY: stash-clear
 stash-clear:
 > git reflog expire --expire=60.days refs/stash || exit 0 ## since I do not use git stash _consistently_ this might raise some errors...
 
+.PHONY: pyshell
 ## Modify the env to your choice...
 PYENV = base
 pyshell:
 > micromamba run --name $(PYENV) python3 -I -s -E -OO
 
+.PHONY: listpyenv
 listpyenv:
 > micromamba env list
 
@@ -127,14 +131,17 @@ listpyenv:
 %.html: %.tex Makefile
 > docker run --rm --platform linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.1 $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<
 
+.PHONY: clean
 clean:
 > @echo "Do cleaning here"
 > rm -rf $(md_files:.md=.pdf) $(md_files:.md=.html) $(patsubst %.c,%,$(wildcard *.c)) $(patsubst %.cc,%,$(wildcard *.cc)) $(patsubst %.cpp,%,$(wildcard *.cpp))
 
+.PHONY: cleanall
 cleanall: clean
 > @echo "Do some specialized cleaning here..."
 > rm -rf *.Rout .RData __pycache__
 
+.PHONY: vars
 ## to debug variables define in Makefile...
 ## bash $ make -n vars 2>/dev/null ## suppress --warn-undefined-variables flag set earlier...
 ## from https://stackoverflow.com/a/7119460
