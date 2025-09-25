@@ -43,7 +43,7 @@ logging.basicConfig(
 )
 
 
-def grid(axis: typing.Literal["both", "x", "y"] = "both"):
+def grid(axis: typing.Literal["both", "x", "y"] = "both") -> None:
     "Show the grid...kinda like graph paper"
     import matplotlib.pyplot as plt
     plt.minorticks_on()
@@ -98,7 +98,7 @@ def timefunc(func: typing.Callable[P, T]) -> typing.Callable[P, T]:
 
 
 @log
-def f1(**kwargs):
+def f1(**kwargs: typing.Any) -> None:
     print("key\tvalue")
     print("---\t-----")
     for k, v in kwargs.items():
@@ -123,12 +123,14 @@ def prod(a: Num, b: Num) -> Num:
 @hy.given(
     a=st.one_of(st.integers(), st.floats()), b=st.one_of(st.integers(), st.floats())
 )
-def test_sum[T: int | float](a: T, b: T) -> None:
+def test_sum(a: Num, b: Num) -> None:
+## def test_sum[T: int | float](a: T, b: T) -> None:
     """This ought to fail for quite a few cases!!!
 
     Included here just to demonstrate how to use hypothesis for PBT.
     """
     assert a + b == sum(a, b)
+    if isinstance(a, complex) or isinstance(b, complex): return
     assert sum(a, b) >= a
     assert sum(a, b) >= b
 
@@ -139,13 +141,13 @@ def test_sum[T: int | float](a: T, b: T) -> None:
     [("3+5", 8), ("2+4", 6), pytest.param("6*9", 42, marks=pytest.mark.xfail)],
 )
 def test_eval(
-    test_input, expected
-):  ## the args have to match args listed in the pytest.mark.parametrize tuple!
+    test_input: str, expected: Num
+) -> None:  ## the args have to match args listed in the pytest.mark.parametrize tuple!
     assert eval(test_input) == expected
 
 
 @log
-def main():
+def main() -> None:
     logging.info("In main")
     print("hello world!")
     f1(fname="vijay", lname="lulla", addr="mythical city", salary=5.2)
