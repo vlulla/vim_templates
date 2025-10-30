@@ -131,6 +131,10 @@ listpyenv:
 %.html: %.tex Makefile
 > docker run --rm --platform linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc/latex:3.1 $(PANDOC_OPTS) ${PANDOC_HTML_OPTS} --from=latex --output=$@ $<
 
+%.py: %.ipynb
+> uv run --with jupyter jupyter nbconvert --to script $<
+# > micromamba run --name ds jupyter jupyter nbconvert --to script $<
+
 .PHONY: clean
 clean:
 > @echo "Do cleaning here"
