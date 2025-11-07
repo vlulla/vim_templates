@@ -1,6 +1,6 @@
 # vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=4:softtabstop=4:textwidth=120:noautoindent:nocindent:nosmartindent
 # /// script
-# requires-python = ">=3.14.*"
+# requires-python = ">=3.14"
 # dependencies = [
 #   "duckdb", "hypothesis", "matplotlib", "numpy", "pandas", "polars", "pyarrow", "pytest", "seaborn",
 # ]
