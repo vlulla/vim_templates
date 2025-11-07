@@ -2,7 +2,7 @@
 # /// script
 # requires-python = ">=3.14"
 # dependencies = [
-#   "duckdb", "hypothesis", "matplotlib", "numpy", "pandas", "polars", "pyarrow", "pytest", "seaborn",
+#   "hypothesis", "matplotlib", "numpy", "pandas", "polars", "pyarrow", "pytest", "seaborn",
 # ]
 # ///
 ##
