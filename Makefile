@@ -35,6 +35,7 @@ all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 .PHONY: update-repo
 update-repo:
 > git stash push --include-untracked
+> ## git fetch --tags --force # replace local tags with remote tags! Needed to get around "would clobber existing tag"
 > git pull --ff-only
 > git stash apply || exit 0 ## '...' ## no stash entry generates a non-zero exit indicating error :-(
 
