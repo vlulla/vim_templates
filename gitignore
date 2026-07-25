@@ -89,3 +89,5 @@ ipython_log*.py
 # direnv related
 .direnv
 .envrc
+
+__marimo__
