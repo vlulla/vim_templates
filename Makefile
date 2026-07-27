@@ -28,12 +28,13 @@ FCFLAGS = -g -Wextra -fimplicit-none -fdefault-real-8 -fbacktrace -fno-align-com
 # link
 FLFLAGS =
 
+
 .PHONY: all
 md_files = $(wildcard *.md)
 all: $(md_files:.md=.pdf) $(md_files:.md=.html)
 
 .PHONY: update-repo
-update-repo:
+update-repo: ## Update the repository.
 > git stash push --include-untracked
 > ## git fetch --tags --force # replace local tags with remote tags! Needed to get around "would clobber existing tag"
 > git pull --ff-only
@@ -41,17 +42,17 @@ update-repo:
 
 ## https://jwiegley.github.io/git-from-the-bottom-up/4-Stashing-and-the-reflog.html is where i got this idea!
 .PHONY: stash-clear
-stash-clear:
+stash-clear: ## Clear the stashed changes.  git stash list to see the stash entries.
 > git reflog expire --expire=60.days refs/stash || exit 0 ## since I do not use git stash _consistently_ this might raise some errors...
 
 .PHONY: pyshell
 ## Modify the env to your choice...
 PYENV = base
-pyshell:
+pyshell: ## Run an interactive python shell.
 > micromamba run --name $(PYENV) python3 -I -s -E -OO
 
 .PHONY: listpyenv
-listpyenv:
+listpyenv: ## List micromamba environments.
 > micromamba env list
 
 %: %.f90 Makefile
@@ -89,7 +90,7 @@ listpyenv:
 > rustc $<
 
 ## For debugging
-%.native: %.md
+%.native: %.md  ## Debugging markdown files.
 > docker run --rm --platform=linux/amd64 --mount "type=bind,src=$$(pwd),dst=/data" --user "$$(id -u):$$(id -g)" pandoc-komascript ${PANDOC_OPTS} --to=native --output=$@ $<
 
 %.pdf: %.md Makefile
@@ -137,12 +138,12 @@ listpyenv:
 # > micromamba run --name ds jupyter jupyter nbconvert --to script $<
 
 .PHONY: clean
-clean:
+clean: ## Clean the folder.
 > @echo "Do cleaning here"
 > rm -rf $(md_files:.md=.pdf) $(md_files:.md=.html) $(patsubst %.c,%,$(wildcard *.c)) $(patsubst %.cc,%,$(wildcard *.cc)) $(patsubst %.cpp,%,$(wildcard *.cpp))
 
 .PHONY: cleanall
-cleanall: clean
+cleanall: clean ## Even more thorough cleaning.
 > @echo "Do some specialized cleaning here..."
 > rm -rf *.Rout .RData __pycache__
 
@@ -151,3 +152,7 @@ cleanall: clean
 ## bash $ make -n vars 2>/dev/null ## suppress --warn-undefined-variables flag set earlier...
 ## from https://stackoverflow.com/a/7119460
 vars:; $(foreach v,$(.VARIABLES),$(info $(v) = $($(v)) ))
+
+.PHONY: help
+help: ## Generates the output for help document.
+> @awk -v FS=$$' ## ' '$$0 ~ /:.+##/ && $$0 !~ /sort$$/ {print sprintf("%-15s",$$1), " ", $$2}' Makefile | sort
