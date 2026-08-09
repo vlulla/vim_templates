@@ -1,4 +1,4 @@
-# vim:fileencoding=utf-8:expandtab:tabstop=8:shiftwidth=4:softtabstop=4:textwidth=120:noautoindent:nocindent:nosmartindent
+# vim:expandtab:tabstop=8:shiftwidth=4:softtabstop=4:textwidth=120:noautoindent:nocindent:nosmartindent
 # /// script
 # requires-python = ">=3.14"
 # dependencies = [
@@ -16,26 +16,30 @@
 ## TODO (vijay): Figure out how to run interactive session with uv!
 
 import datetime
-import logging
-import typing
 import functools
 import inspect
+import logging
 import pytest
 import statistics as stats
+import sys
 import time
+import typing
+
 ## import numpy as np, pandas as pd, pyarrow as pa, duckdb as ddb, polars as pl
 ## import matplotlib.pyplot as plt,seaborn as sns
 import hypothesis as hy
 import hypothesis.strategies as st
 ## ddb.execute("SET GLOBAL pandas_analyze_sample = 100_000")
 
+
 if __debug__: import pdb
 
 T = typing.TypeVar("T")
 P = typing.ParamSpec("P")
+TODAY = datetime.datetime.now(tz=datetime.timezone.utc).date()
 
 logging.basicConfig(
-    filename=f"{__file__}-{str(datetime.datetime.now().date())}.log",
+    filename=f"{__file__}-{TODAY!s}.log",
     level=logging.DEBUG,
     encoding="utf-8",
     format="{asctime} - {levelname} - {message!r}",
@@ -61,9 +65,9 @@ def log(func: typing.Callable[P, T]) -> typing.Callable[P, T]:
         try:
             result = func(*args, **kwargs)
             return result
-        except Exception as e:
-            logger.exception(f"Exception raised in {func.__name__}. exception: {e!s}")
-            raise e
+        except Exception:
+            logger.exception(f"Exception raised in {func.__name__}.")
+            raise
     return wrapper
 
 
@@ -92,9 +96,9 @@ def timefunc(func: typing.Callable[P, T]) -> typing.Callable[P, T]:
                 f"{func.__name__}({signature}) took: {(time.monotonic_ns() - start_time) / 1_000_000_000} seconds"
             )  ## TODO (vijay): will this be logged if exception is raised in a long running function?
             return result
-        except Exception as e:
-            logger.exception(f"Exception raised in {func.__name__}({signature}). exception: {e!s}")
-            raise e
+        except Exception:
+            logger.exception(f"Exception raised in {func.__name__}({signature}).")
+            raise
     return wrapper
 
 
@@ -149,7 +153,7 @@ def test_eval(
 
 @log
 def main() -> None:
-    logging.info("In main")
+    logging.get_logger(__name__).info("In main")
     print("hello world!")
     f1(fname="vijay", lname="lulla", addr="mythical city", salary=5.2)
     f1(x=[1, 2, 3, 4, 5], y=[1, 2, 3, 4, 5])
@@ -158,7 +162,7 @@ def main() -> None:
     print(f"${million:_d} US = \u20ac{million * scaler:4_.2f}")
     print(f"{sum(2,18.5)=}\n{prod(2,18.5)=}")
 
-    today = datetime.datetime.now()
+    today = TODAY
     print(f"{today:%B %d, %Y}\n"
           f"{today=:%B %d, %Y}\n"
           f"{ today = :%B %d, %Y}" ) ## NOTE: whitespace preserved!
@@ -169,4 +173,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    if __debug__:
+        print("Run with `-O` to remove __debug__ and assert statements.", file=sys.stderr)
     main()
