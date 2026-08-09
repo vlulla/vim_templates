@@ -1,0 +1,10 @@
+[tool.ruff]
+line-lenght = 120
+output-format = "json"
+output-prefer-rules = true
+
+[tool.ruff.lint.pycodestyle]
+max-line-lenght = 160
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true
