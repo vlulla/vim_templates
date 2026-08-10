@@ -1,7 +1,7 @@
 [tool.ruff]
 line-lenght = 120
 output-format = "json"
-output-prefer-rules = true
+output-prefer-rule-codes = true
 
 [tool.ruff.lint.pycodestyle]
 max-line-length = 160
