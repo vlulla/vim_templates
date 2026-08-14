@@ -156,3 +156,7 @@ vars:; $(foreach v,$(.VARIABLES),$(info $(v) = $($(v)) ))
 .PHONY: help
 help: ## Generates the output for help document.
 > @awk -v FS=$$' ## ' '$$0 ~ /:.+##/ && $$0 !~ /sort$$/ {print sprintf("%-15s",$$1), " ", $$2}' Makefile | sort
+
+.PHONY: fix-makefile
+fix-makefile: ## Remove GNU specific feature from Makefile...especially useful for make on macos
+> sed -e '/^.RECIPEPREFIX =/d' -e 's/^> /	/g' Makefile
