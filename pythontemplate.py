@@ -153,7 +153,7 @@ def test_eval(
 
 @log
 def main() -> None:
-    logging.get_logger(__name__).info("In main")
+    logging.getLogger(__name__).info("In main")
     print("hello world!")
     f1(fname="vijay", lname="lulla", addr="mythical city", salary=5.2)
     f1(x=[1, 2, 3, 4, 5], y=[1, 2, 3, 4, 5])
