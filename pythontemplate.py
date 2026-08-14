@@ -6,14 +6,15 @@
 # ]
 # ///
 ##
-## ~ $ uv run python <your-script.py> ## *** preferred
+## ~ $ pixi run --script <your-script.py> ## *** preferred
 ## ~ $ PYTHONOPTIMIZE=0 python3 -i <your-script.py> ## when you are developing
 ## ~ $ python3 -I -E -O <your-script.py>  ## when you want to deploy...this removes the if __debug__ and assert checks!
 ## ~ $ python3 -I -E -OO <your-script.py> ## even more optimization... removes docstrings!
 ##
 ## OR better yet...
-## ~ $ uv run <your-script.py> ## this will automatically install packages listed in the script block above. PEP-723
-## TODO (vijay): Figure out how to run interactive session with uv!
+## ~ $ pixi run --script <your-script.py> ## this will automatically install packages listed in the script metadata block above. PEP-723
+## ~ $ pixi add --script <your-script.py> pyarrow ## installs pyarrow in temp cache and updateds inline script metadata block, without modifying manifest (pixi.toml or pyproject.toml)!
+## TODO (vijay): Figure out how to run interactive session with pixi!
 
 import datetime
 import functools
