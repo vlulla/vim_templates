@@ -79,6 +79,7 @@ def timefunc(func: typing.Callable[P, T]) -> typing.Callable[P, T]:
         def tst():
             time.sleep(5)
             pass
+    >>> logging.basicConfig()
     >>> logging.getLogger("timefunc").setLevel(logging.DEBUG)
     >>> tst()
     DEBUG:timefunc:tst took: 5.005141952 seconds
